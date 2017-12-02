@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -27,27 +27,27 @@
 <p>
 	JournalContentUtil#getJournalContent=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				JournalContentUtil.getJournalContent();
-			}
+		protected void test() throws Exception {
+			JournalContentUtil.getJournalContent();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	LanguageUtil#getLanguage=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				LanguageUtil.getLanguage();
-			}
+		protected void test() throws Exception {
+			LanguageUtil.getLanguage();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -57,53 +57,21 @@
 
 <p>
 
-	EntityCacheUtil#setEntityCache=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				EntityCacheUtil entityCacheUtil = new EntityCacheUtil();
-
-				EntityCache entityCache = EntityCacheUtil.getEntityCache();
-
-				entityCacheUtil.setEntityCache(entityCache);
-			}
-
-		};
-		%>
-
-	FinderCacheUtil#setFinderCache=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				FinderCacheUtil finderCacheUtil = new FinderCacheUtil();
-
-				FinderCache finderCache = FinderCacheUtil.getFinderCache();
-
-				finderCacheUtil.setFinderCache(finderCache);
-			}
-
-		};
-		%>
-
 	PortalCustomSQLUtil#setPortalCustomSQL=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				PortalCustomSQLUtil portalCustomSQLUtil = new PortalCustomSQLUtil();
+		protected void test() throws Exception {
+			PortalCustomSQLUtil portalCustomSQLUtil = new PortalCustomSQLUtil();
 
-				PortalCustomSQL portalCustomSQL = PortalCustomSQLUtil.getPortalCustomSQL();
+			PortalCustomSQL portalCustomSQL = PortalCustomSQLUtil.getPortalCustomSQL();
 
-				portalCustomSQLUtil.setPortalCustomSQL(portalCustomSQL);
-			}
+			portalCustomSQLUtil.setPortalCustomSQL(portalCustomSQL);
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -116,227 +84,235 @@
 </p>
 
 <p>
+	com.liferay.blogs.kernel.service.BlogsEntryLocalService#getClass#getClassLoader=
+
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			BlogsEntryLocalService blogsEntryLocalService = BlogsEntryLocalServiceUtil.getService();
+
+			Class<?> clazz = blogsEntryLocalService.getClass();
+
+			clazz.getClassLoader();
+		}
+
+	};
+	%>
+
 	com.liferay.chat.model.EntryClp#toEscapedModel=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				long entryId = System.currentTimeMillis();
+		protected void test() throws Exception {
+			long entryId = System.currentTimeMillis();
 
-				Entry newEntry = EntryLocalServiceUtil.createEntry(entryId);
+			Entry newEntry = EntryLocalServiceUtil.createEntry(entryId);
 
-				newEntry.toEscapedModel();
-			}
+			newEntry.toEscapedModel();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.chat.model.EntryClp.class#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				EntryClp.class.getClassLoader();
-			}
+		protected void test() throws Exception {
+			EntryClp.class.getClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.chat.service.EntryLocalService#getClass#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				EntryLocalService entryLocalService = EntryLocalServiceUtil.getService();
+		protected void test() throws Exception {
+			EntryLocalService entryLocalService = EntryLocalServiceUtil.getService();
 
-				Class<?> clazz = entryLocalService.getClass();
+			Class<?> clazz = entryLocalService.getClass();
 
-				clazz.getClassLoader();
-			}
+			clazz.getClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("1_WAR_chatportlet")=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
-			}
+		protected void test() throws Exception {
+			PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("1_WAR_flashportlet")=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("1_WAR_flashportlet");
-			}
+		protected void test() throws Exception {
+			PortletClassLoaderUtil.getClassLoader("1_WAR_flashportlet");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("chat-portlet")=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("chat-portlet");
-			}
+		protected void test() throws Exception {
+			PortletClassLoaderUtil.getClassLoader("chat-portlet");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("flash-portlet")=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("flash-portlet");
-			}
+		protected void test() throws Exception {
+			PortletClassLoaderUtil.getClassLoader("flash-portlet");
+		}
 
-		};
-		%>
+	};
+	%>
+
+	com.liferay.portal.kernel.util.Portal#getClass#getClassLoader=
+
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			Portal portal = PortalUtil.getPortal();
+
+			Class<?> clazz = portal.getClass();
+
+			clazz.getClassLoader();
+		}
+
+	};
+	%>
 
 	com.liferay.portal.kernel.util.PortalClassLoaderUtil#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				PortalClassLoaderUtil.getClassLoader();
-			}
+		protected void test() throws Exception {
+			PortalClassLoaderUtil.getClassLoader();
+		}
 
-		};
-		%>
-
-	com.liferay.portal.util.Portal#getClass#getClassLoader=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				Portal portal = PortalUtil.getPortal();
-
-				Class<?> clazz = portal.getClass();
-
-				clazz.getClassLoader();
-			}
-
-		};
-		%>
-
-	com.liferay.portlet.blogs.service.BlogsEntryLocalService#getClass#getClassLoader=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				BlogsEntryLocalService blogsEntryLocalService = BlogsEntryLocalServiceUtil.getService();
-
-				Class<?> clazz = blogsEntryLocalService.getClass();
-
-				clazz.getClassLoader();
-			}
-
-		};
-		%>
+	};
+	%>
 
 	com.liferay.testpacl.service.FooLocalService#getClass#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalService fooLocalService = FooLocalServiceUtil.getService();
+		protected void test() throws Exception {
+			FooLocalService fooLocalService = FooLocalServiceUtil.getService();
 
-				Class<?> clazz = fooLocalService.getClass();
+			Class<?> clazz = fooLocalService.getClass();
 
-				clazz.getClassLoader();
-			}
+			clazz.getClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.testpacl.util.TestPACLUtil.class#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				TestPACLUtil.class.getClassLoader();
-			}
+		protected void test() throws Exception {
+			TestPACLUtil.class.getClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	java.lang.ClassLoader#getSystemClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				ClassLoader.getSystemClassLoader();
-			}
+		protected void test() throws Exception {
+			ClassLoader.getSystemClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	java.lang.Class#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Class<?> clazz = getClass();
+		protected void test() throws Exception {
+			Class<?> clazz = getClass();
 
-				clazz.getClassLoader();
-			}
+			clazz.getClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	java.lang.Object.class#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Object.class.getClassLoader();
-			}
+		protected void test() throws Exception {
+			Object.class.getClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	java.lang.Object#getClass#getClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Object object = new Object();
+		protected void test() throws Exception {
+			Object object = new Object();
 
-				Class<?> clazz = object.getClass();
+			Class<?> clazz = object.getClass();
 
-				clazz.getClassLoader();
-			}
+			clazz.getClassLoader();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	java.lang.Thread#getContextClassLoader=
 
-		<%
+	<%
+	if (ServerDetector.isWebLogic()) {
+
+		// In WebLogic, the context classloader is always the JSP class
+		// loader. Therefore, there is no security check.
+
+		out.print("PASSED");
+	}
+	else {
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
@@ -346,7 +322,8 @@
 			}
 
 		};
-		%>
+	}
+	%>
 
 </p>
 
@@ -357,15 +334,15 @@
 <p>
 	java.net.URLClassLoader=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				new URLClassLoader(new URL[0], ClassLoader.getSystemClassLoader());
-			}
+		protected void test() throws Exception {
+			new URLClassLoader(new URL[0], ClassLoader.getSystemClassLoader());
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -380,27 +357,27 @@
 <p>
 	EntryLocalServiceUtil#dynamicQuery=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				EntryLocalServiceUtil.dynamicQuery();
-			}
+		protected void test() throws Exception {
+			EntryLocalServiceUtil.dynamicQuery();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	StatusLocalServiceUtil#dynamicQuery=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				StatusLocalServiceUtil.dynamicQuery();
-			}
+		protected void test() throws Exception {
+			StatusLocalServiceUtil.dynamicQuery();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -411,39 +388,39 @@
 <p>
 	DynamicQueryFactoryUtil#forClass(Group.class)=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				DynamicQueryFactoryUtil.forClass(Group.class);
-			}
+		protected void test() throws Exception {
+			DynamicQueryFactoryUtil.forClass(Group.class);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	DynamicQueryFactoryUtil#forClass(Role.class)=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				DynamicQueryFactoryUtil.forClass(Role.class);
-			}
+		protected void test() throws Exception {
+			DynamicQueryFactoryUtil.forClass(Role.class);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	GroupLocalServiceUtil#dynamicQuery=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				GroupLocalServiceUtil.dynamicQuery();
-			}
+		protected void test() throws Exception {
+			GroupLocalServiceUtil.dynamicQuery();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -454,27 +431,27 @@
 <p>
 	DynamicQueryFactoryUtil#forClass(Foo.class)=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				DynamicQueryFactoryUtil.forClass(Foo.class);
-			}
+		protected void test() throws Exception {
+			DynamicQueryFactoryUtil.forClass(Foo.class);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#dynamicQuery=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.dynamicQuery();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.dynamicQuery();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -485,27 +462,27 @@
 <p>
 	JAVA_HOME= (<%= System.getenv("JAVA_HOME") %>)
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				System.getenv("JAVA_HOME");
-			}
+		protected void test() throws Exception {
+			System.getenv("JAVA_HOME");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	PATH=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				System.getenv("PATH");
-			}
+		protected void test() throws Exception {
+			System.getenv("PATH");
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -516,131 +493,131 @@
 <p>
 	Group#getExpandoBridge=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Group group = themeDisplay.getScopeGroup();
+		protected void test() throws Exception {
+			Group group = themeDisplay.getScopeGroup();
 
-				group.getExpandoBridge();
-			}
+			group.getExpandoBridge();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	Group#setExpandoBridgeAttributes=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Group group = themeDisplay.getScopeGroup();
+		protected void test() throws Exception {
+			Group group = themeDisplay.getScopeGroup();
 
-				ServiceContext serviceContext = new ServiceContext();
+			ServiceContext serviceContext = new ServiceContext();
 
-				group.setExpandoBridgeAttributes(serviceContext);
-			}
+			group.setExpandoBridgeAttributes(serviceContext);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	GroupWrapper#getExpandoBridge=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Group group = themeDisplay.getScopeGroup();
+		protected void test() throws Exception {
+			Group group = themeDisplay.getScopeGroup();
 
-				group = new GroupWrapper(group);
+			group = new GroupWrapper(group);
 
-				group.getExpandoBridge();
-			}
+			group.getExpandoBridge();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	GroupWrapper#setExpandoBridgeAttributes=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Group group = themeDisplay.getScopeGroup();
+		protected void test() throws Exception {
+			Group group = themeDisplay.getScopeGroup();
 
-				group = new GroupWrapper(group);
+			group = new GroupWrapper(group);
 
-				ServiceContext serviceContext = new ServiceContext();
+			ServiceContext serviceContext = new ServiceContext();
 
-				group.setExpandoBridgeAttributes(serviceContext);
-			}
+			group.setExpandoBridgeAttributes(serviceContext);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	User#getExpandoBridge=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				User user = themeDisplay.getUser();
+		protected void test() throws Exception {
+			User user = themeDisplay.getUser();
 
-				user.getExpandoBridge();
-			}
+			user.getExpandoBridge();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	User#setExpandoBridgeAttributes=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				User user = themeDisplay.getUser();
+		protected void test() throws Exception {
+			User user = themeDisplay.getUser();
 
-				ServiceContext serviceContext = new ServiceContext();
+			ServiceContext serviceContext = new ServiceContext();
 
-				user.setExpandoBridgeAttributes(serviceContext);
-			}
+			user.setExpandoBridgeAttributes(serviceContext);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	UserWrapper#getExpandoBridge=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				User user = themeDisplay.getUser();
+		protected void test() throws Exception {
+			User user = themeDisplay.getUser();
 
-				user = new UserWrapper(user);
+			user = new UserWrapper(user);
 
-				user.getExpandoBridge();
-			}
+			user.getExpandoBridge();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	UserWrapper#setExpandoBridgeAttributes=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				User user = themeDisplay.getUser();
+		protected void test() throws Exception {
+			User user = themeDisplay.getUser();
 
-				user = new UserWrapper(user);
+			user = new UserWrapper(user);
 
-				ServiceContext serviceContext = new ServiceContext();
+			ServiceContext serviceContext = new ServiceContext();
 
-				user.setExpandoBridgeAttributes(serviceContext);
-			}
+			user.setExpandoBridgeAttributes(serviceContext);
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -658,15 +635,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
 		protected void test() throws Exception {
-			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
-		}
-
-	};
-
-	new FileSecurityExceptionTest(out, themeDisplay, true) {
-
-		protected void test() throws Exception {
-			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+			testDelete("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
 		}
 
 	};
@@ -674,15 +643,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
-		}
-
-	};
-
-	new FileSecurityExceptionTest(out, themeDisplay, false) {
-
-		protected void test() throws Exception {
-			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
+			testDelete("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
 		}
 
 	};
@@ -955,12 +916,12 @@
 </p>
 
 <p>
-	en_UK=<%= _assertEquals(LanguageUtil.get(Locale.UK, "stars"), "David Beckham") %><br />
-	en_US=<%= _assertEquals(LanguageUtil.get(Locale.US, "stars"), "Stars") %><br />
-	es_ES=<%= _assertEquals(LanguageUtil.get(new Locale("es"), "stars"), "Estrellas") %><br />
-	it_IT=<%= _assertEquals(LanguageUtil.get(Locale.ITALY, "stars"), "Stelle") %><br />
-	pt_BR=<%= _assertEquals(LanguageUtil.get(new Locale("pt", "BR"), "stars"), "Ricardo Kaka") %><br />
-	pt_PT=<%= _assertEquals(LanguageUtil.get(new Locale("pt", "PT"), "stars"), "Cristiano Ronaldo") %>
+	en_UK=<%= _assertEquals(LanguageUtil.get(LocaleUtil.UK, "stars"), "David Beckham") %><br />
+	en_US=<%= _assertEquals(LanguageUtil.get(LocaleUtil.US, "stars"), "Stars") %><br />
+	es_ES=<%= _assertEquals(LanguageUtil.get(LocaleUtil.SPAIN, "stars"), "Estrellas") %><br />
+	it_IT=<%= _assertEquals(LanguageUtil.get(LocaleUtil.ITALY, "stars"), "Stelle") %><br />
+	pt_BR=<%= _assertEquals(LanguageUtil.get(LocaleUtil.BRAZIL, "stars"), "Ricardo Kaka") %><br />
+	pt_PT=<%= _assertEquals(LanguageUtil.get(LocaleUtil.PORTUGAL, "stars"), "Cristiano Ronaldo") %>
 </p>
 
 <p>
@@ -968,7 +929,7 @@
 </p>
 
 <p>
-	locales.beta=<%= _assertFalse(LanguageUtil.isBetaLocale(Locale.US)) %><br />
+	locales.beta=<%= _assertFalse(LanguageUtil.isBetaLocale(LocaleUtil.US)) %><br />
 
 	<%
 	String phoneNumber = PhoneNumberFormatUtil.format("123");
@@ -1006,47 +967,47 @@
 <p>
 	AES Encrypt=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+		protected void test() throws Exception {
+			KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
 
-				keyGenerator.init(128);
+			keyGenerator.init(128);
 
-				SecretKey secretKey = keyGenerator.generateKey();
+			SecretKey secretKey = keyGenerator.generateKey();
 
-				Cipher cipher = Cipher.getInstance("AES");
+			Cipher cipher = Cipher.getInstance("AES");
 
-				cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
-				String text = "Hello World";
+			String text = "Hello World";
 
-				cipher.doFinal(text.getBytes());
-			}
-		};
-		%>
+			cipher.doFinal(text.getBytes());
+		}
+	};
+	%>
 
 	HmacMD5=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Mac mac = Mac.getInstance("HmacMD5");
+		protected void test() throws Exception {
+			Mac mac = Mac.getInstance("HmacMD5");
 
-				String key = "123456789";
+			String key = "123456789";
 
-				SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), "HmacMD5");
+			SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), "HmacMD5");
 
-				mac.init(secretKeySpec);
+			mac.init(secretKeySpec);
 
-				String text = "Hello World";
+			String text = "Hello World";
 
-				mac.doFinal(text.getBytes());
-			}
-		};
-		%>
+			mac.doFinal(text.getBytes());
+		}
+	};
+	%>
 
 </p>
 
@@ -1124,75 +1085,75 @@
 	<h3>Lookup</h3>
 </p>
 
-	<%
-	new JNDISecurityExceptionTest(out, themeDisplay, true) {
+<%
+new JNDISecurityExceptionTest(out, themeDisplay, true) {
 
-		protected void test() throws Exception {
-			testLookup("java_liferay:jdbc/LiferayPool", null);
+	protected void test() throws Exception {
+		testLookup("java_liferay:jdbc/LiferayPool", null);
+	}
+
+};
+
+new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+	protected void test() throws Exception {
+		testLookup("test-pacl-matthew", "Matthew");
+	}
+
+};
+
+new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+	protected void test() throws Exception {
+		try {
+			testLookup("test-pacl-matthew", "Matthew 1:1");
 		}
-
-	};
-
-	new JNDISecurityExceptionTest(out, themeDisplay, false) {
-
-		protected void test() throws Exception {
-			testLookup("test-pacl-matthew", "Matthew");
+		catch (ExpectedTestException ete) {
 		}
+	}
 
-	};
+};
 
-	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
-		protected void test() throws Exception {
-			try {
-				testLookup("test-pacl-matthew", "Matthew 1:1");
-			}
-			catch (ExpectedTestException ete) {
-			}
-		}
+	protected void test() throws Exception {
+		testLookup("test-pacl-mark", "Mark");
+	}
 
-	};
+};
 
-	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
-		protected void test() throws Exception {
-			testLookup("test-pacl-mark", "Mark");
-		}
+	protected void test() throws Exception {
+		testLookup("test-pacl-Mark", "Mark");
+	}
 
-	};
+};
 
-	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
-		protected void test() throws Exception {
-			testLookup("test-pacl-Mark", "Mark");
-		}
+	protected void test() throws Exception {
+		testLookup("test-pacl-luke", "Luke");
+	}
 
-	};
+};
 
-	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
-		protected void test() throws Exception {
-			testLookup("test-pacl-luke", "Luke");
-		}
+	protected void test() throws Exception {
+		testLookup("test-pacl-Luke", "Luke");
+	}
 
-	};
+};
 
-	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
-		protected void test() throws Exception {
-			testLookup("test-pacl-Luke", "Luke");
-		}
+	protected void test() throws Exception {
+		testLookup("test-pacl-john 3:16", "John");
+	}
 
-	};
-
-	new JNDISecurityExceptionTest(out, themeDisplay, false) {
-
-		protected void test() throws Exception {
-			testLookup("test-pacl-john 3:16", "John");
-		}
-
-	};
-	%>
+};
+%>
 
 <p>
 	<h3>Unbind</h3>
@@ -1271,35 +1232,35 @@
 <p>
 	liferay/test_pacl_listen_failure=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Object value = MessageBusUtil.sendSynchronousMessage("liferay/test_pacl_listen_failure", "Listen Failure");
+		protected void test() throws Exception {
+			Object value = MessageBusUtil.sendSynchronousMessage("liferay/test_pacl_listen_failure", "Listen Failure");
 
-				if (value != null) {
-					throw new Exception("Message bus destination is not protected");
-				}
+			if (value != null) {
+				throw new Exception("Message bus destination is not protected");
 			}
+		}
 
-		};
-		%>
+	};
+	%>
 
 	liferay/test_pacl_listen_success=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Object value = MessageBusUtil.sendSynchronousMessage("liferay/test_pacl_listen_success", "Listen Success");
+		protected void test() throws Exception {
+			Object value = MessageBusUtil.sendSynchronousMessage("liferay/test_pacl_listen_success", "Listen Success");
 
-				if ((value == null) || !value.equals("Listen Success")) {
-					throw new Exception("Message bus destination is not registered");
-				}
+			if ((value == null) || !value.equals("Listen Success")) {
+				throw new Exception("Message bus destination is not registered");
 			}
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1310,27 +1271,27 @@
 <p>
 	liferay/test_pacl_send_failure=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				MessageBusUtil.sendMessage("liferay/test_pacl_send_failure", "Send Failure");
-			}
+		protected void test() throws Exception {
+			MessageBusUtil.sendMessage("liferay/test_pacl_send_failure", "Send Failure");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	liferay/test_pacl_send_success=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				MessageBusUtil.sendMessage("liferay/test_pacl_send_success", "Send Success");
-			}
+		protected void test() throws Exception {
+			MessageBusUtil.sendMessage("liferay/test_pacl_send_success", "Send Success");
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1346,47 +1307,47 @@
 
 	PropsKeys.class#ADMIN_DEFAULT_GROUP_NAMES=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Class<?> clazz = PropsKeys.class;
+		protected void test() throws Exception {
+			Class<?> clazz = PropsKeys.class;
 
-				clazz.getField("ADMIN_DEFAULT_GROUP_NAMES");
-			}
+			clazz.getField("ADMIN_DEFAULT_GROUP_NAMES");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	PropsKeys.class#ADMIN_DEFAULT_GROUP_NAMES#setAccessible(false)=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Class<?> clazz = PropsKeys.class;
+		protected void test() throws Exception {
+			Class<?> clazz = PropsKeys.class;
 
-				Field field = clazz.getField("ADMIN_DEFAULT_GROUP_NAMES");
+			Field field = clazz.getField("ADMIN_DEFAULT_GROUP_NAMES");
 
-				field.setAccessible(false);
-			}
+			field.setAccessible(false);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	UserLocalServiceUtil.class#_service=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Class<?> clazz = UserLocalServiceUtil.class;
+		protected void test() throws Exception {
+			Class<?> clazz = UserLocalServiceUtil.class;
 
-				clazz.getDeclaredField("_service");
-			}
+			clazz.getDeclaredField("_service");
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1397,59 +1358,59 @@
 <p>
 	ObjectMapper=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				new ObjectMapper();
-			}
+		protected void test() throws Exception {
+			new ObjectMapper();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	TestPACLUtil.class#TEST_FIELD=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Class<?> clazz = TestPACLUtil.class;
+		protected void test() throws Exception {
+			Class<?> clazz = TestPACLUtil.class;
 
-				clazz.getField("TEST_FIELD");
-			}
+			clazz.getField("TEST_FIELD");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	TestPACLUtil.class#TEST_FIELD#setAccessible(false)=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Class<?> clazz = TestPACLUtil.class;
+		protected void test() throws Exception {
+			Class<?> clazz = TestPACLUtil.class;
 
-				Field field = clazz.getField("TEST_FIELD");
+			Field field = clazz.getField("TEST_FIELD");
 
-				field.setAccessible(false);
-			}
+			field.setAccessible(false);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	TestPACLUtil.class#_log=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Class<?> clazz = TestPACLUtil.class;
+		protected void test() throws Exception {
+			Class<?> clazz = TestPACLUtil.class;
 
-				clazz.getDeclaredField("_log");
-			}
+			clazz.getDeclaredField("_log");
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1469,10 +1430,10 @@
 	<liferay-util:buffer var="searchContainerHTML">
 		<liferay-ui:search-container
 			headerNames="Check,Result"
+			total="<%= 1 %>"
 		>
 			<liferay-ui:search-container-results
 				results="<%= foos %>"
-				total="1"
 			/>
 
 			<liferay-ui:search-container-row
@@ -1480,7 +1441,6 @@
 				keyProperty="fooId"
 				modelVar="foo"
 			>
-
 				<liferay-ui:search-container-column-text
 					name="Check"
 					value="<%= foo.getField1() %>"
@@ -1490,7 +1450,6 @@
 					name="Result"
 					value="PASSED"
 				/>
-
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator />
@@ -1515,27 +1474,27 @@
 <p>
 	GENERIC_ENGINE=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				SearchEngineUtil.getSearchEngine("GENERIC_ENGINE");
-			}
+		protected void test() throws Exception {
+			SearchEngineUtil.getSearchEngine("GENERIC_ENGINE");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	SYSTEM_ENGINE=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				SearchEngineUtil.getSearchEngine("SYSTEM_ENGINE");
-			}
+		protected void test() throws Exception {
+			SearchEngineUtil.getSearchEngine("SYSTEM_ENGINE");
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1550,91 +1509,91 @@
 <p>
 	EntryLocalServiceUtil#getEntry=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				try {
-					EntryLocalServiceUtil.getEntry(0);
+		protected void test() throws Exception {
+			try {
+				EntryLocalServiceUtil.getEntry(0);
 
-					throw new Exception("Failed to throw NoSuchEntryException");
-				}
-				catch (NoSuchEntryException nsee) {
-				}
+				throw new Exception("Failed to throw NoSuchEntryException");
 			}
+			catch (NoSuchEntryException nsee) {
+			}
+		}
 
-		};
-		%>
+	};
+	%>
 
 	EntryLocalServiceUtil#getEntries=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				EntryLocalServiceUtil.getEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
+		protected void test() throws Exception {
+			EntryLocalServiceUtil.getEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	EntryLocalServiceUtil#updateEntry=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				long entryId = System.currentTimeMillis();
+		protected void test() throws Exception {
+			long entryId = System.currentTimeMillis();
 
-				Entry newEntry = EntryLocalServiceUtil.createEntry(entryId);
+			Entry newEntry = EntryLocalServiceUtil.createEntry(entryId);
 
-				String content = PwdGenerator.getPassword();
+			String content = PwdGenerator.getPassword();
 
-				newEntry.setContent(content);
+			newEntry.setContent(content);
 
-				EntryLocalServiceUtil.updateEntry(newEntry);
+			EntryLocalServiceUtil.updateEntry(newEntry);
 
-				Entry existingEntry = EntryLocalServiceUtil.getEntry(entryId);
+			Entry existingEntry = EntryLocalServiceUtil.getEntry(entryId);
 
-				if (!Validator.equals(entryId, existingEntry.getEntryId()) ||
-					!Validator.equals(content, existingEntry.getContent())) {
+			if (!Objects.equals(entryId, existingEntry.getEntryId()) ||
+				!Objects.equals(content, existingEntry.getContent())) {
 
-					throw new Exception("Expected identical entry");
-				}
+				throw new Exception("Expected identical entry");
 			}
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntry=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				try {
-					FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(0);
+		protected void test() throws Exception {
+			try {
+				FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(0);
 
-					throw new Exception("Failed to throw NoSuchEntryException");
-				}
-				catch (NoSuchEntryException nsee) {
-				}
+				throw new Exception("Failed to throw NoSuchEntryException");
 			}
+			catch (NoSuchEntryException nsee) {
+			}
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntries=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1645,51 +1604,51 @@
 <p>
 	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatus=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(0);
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(0);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatuses=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	StatusLocalServiceUtil#getStatus=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				StatusLocalServiceUtil.getStatus(0);
-			}
+		protected void test() throws Exception {
+			StatusLocalServiceUtil.getStatus(0);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	StatusLocalServiceUtil#getStatuses=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				StatusLocalServiceUtil.getStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
+		protected void test() throws Exception {
+			StatusLocalServiceUtil.getStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1704,39 +1663,39 @@
 <p>
 	CompanyLocalServiceUtil#getCompanyByWebId=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				CompanyLocalServiceUtil.getCompanyByWebId("liferay.com");
-			}
+		protected void test() throws Exception {
+			CompanyLocalServiceUtil.getCompanyByWebId("liferay.com");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getCompanyPersistence_FindByPrimaryKey=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getCompanyPersistence_FindByPrimaryKey(themeDisplay.getCompanyId());
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getCompanyPersistence_FindByPrimaryKey(themeDisplay.getCompanyId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getCompanyUtil_FindByPrimaryKey=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getCompanyUtil_FindByPrimaryKey(themeDisplay.getCompanyId());
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getCompanyUtil_FindByPrimaryKey(themeDisplay.getCompanyId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1747,39 +1706,39 @@
 <p>
 	GroupLocalServiceUtil#getGroup=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				GroupLocalServiceUtil.getGroup(themeDisplay.getScopeGroupId());
-			}
+		protected void test() throws Exception {
+			GroupLocalServiceUtil.getGroup(themeDisplay.getScopeGroupId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getGroupPersistence_FindByPrimaryKey=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getGroupPersistence_FindByPrimaryKey(themeDisplay.getScopeGroupId());
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getGroupPersistence_FindByPrimaryKey(themeDisplay.getScopeGroupId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getGroupUtil_FindByPrimaryKey=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getGroupUtil_FindByPrimaryKey(themeDisplay.getScopeGroupId());
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getGroupUtil_FindByPrimaryKey(themeDisplay.getScopeGroupId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1790,75 +1749,75 @@
 <p>
 	FooLocalServiceUtil#getPortalService_GetBuildNumber=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getPortalService_GetBuildNumber();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getPortalService_GetBuildNumber();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getPortalService_TestGetBuildNumber=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getPortalService_TestGetBuildNumber();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getPortalService_TestGetBuildNumber();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getPortalService_TestHasClassName=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getPortalService_TestHasClassName();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getPortalService_TestHasClassName();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getPortalServiceUtil_GetBuildNumber=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getPortalServiceUtil_GetBuildNumber();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getPortalServiceUtil_GetBuildNumber();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getPortalServiceUtil_TestGetBuildNumber=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getPortalServiceUtil_TestGetBuildNumber();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getPortalServiceUtil_TestGetBuildNumber();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getPortalServiceUtil_TestHasClassName=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getPortalServiceUtil_TestHasClassName();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getPortalServiceUtil_TestHasClassName();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1869,39 +1828,39 @@
 <p>
 	FooLocalServiceUtil#getUserPersistence_FindByPrimaryKey=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getUserPersistence_FindByPrimaryKey(themeDisplay.getUserId());
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getUserPersistence_FindByPrimaryKey(themeDisplay.getUserId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getUserUtil_FindByPrimaryKey=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getUserUtil_FindByPrimaryKey(themeDisplay.getUserId());
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getUserUtil_FindByPrimaryKey(themeDisplay.getUserId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 	UserLocalServiceUtil#getUser=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				UserLocalServiceUtil.getUser(themeDisplay.getUserId());
-			}
+		protected void test() throws Exception {
+			UserLocalServiceUtil.getUser(themeDisplay.getUserId());
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1916,27 +1875,27 @@
 <p>
 	com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.FooLocalServiceUtil#getFoosCount=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.getFoosCount();
-			}
+		protected void test() throws Exception {
+			com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.getFoosCount();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.FooLocalServiceUtil#getLocalObject=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.getLocalObject();
-			}
+		protected void test() throws Exception {
+			com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.getLocalObject();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1951,27 +1910,27 @@
 <p>
 	FooLocalServiceUtil#getFoosCount=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getFoosCount();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getFoosCount();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	FooLocalServiceUtil#getReleaseInfo_GetBuildNumber=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getReleaseInfo_GetBuildNumber();
-			}
+		protected void test() throws Exception {
+			FooLocalServiceUtil.getReleaseInfo_GetBuildNumber();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -1986,111 +1945,111 @@
 <p>
 	localhost:4320=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4316);
+		protected void test() throws Exception {
+			ServerSocket serverSocket = new ServerSocket(4316);
 
-				serverSocket.setSoTimeout(1000);
+			serverSocket.setSoTimeout(1000);
 
-				try {
-					Runnable runnable = new Runnable() {
+			try {
+				Runnable runnable = new Runnable() {
 
-						public void run() {
-							Socket socket = new Socket();
+					public void run() {
+						Socket socket = new Socket();
 
+						try {
+							socket.setSoLinger(true, 0);
+
+							socket.bind(new InetSocketAddress("localhost", 4320));
+
+							socket.connect(new InetSocketAddress("localhost", 4316), 500);
+						}
+						catch (Exception e) {
+							throw new RuntimeException(e);
+						}
+						finally {
 							try {
-								socket.setSoLinger(true, 0);
-
-								socket.bind(new InetSocketAddress("localhost", 4320));
-
-								socket.connect(new InetSocketAddress("localhost", 4316), 500);
+								socket.close();
 							}
 							catch (Exception e) {
 								throw new RuntimeException(e);
 							}
-							finally {
-								try {
-									socket.close();
-								}
-								catch (Exception e) {
-									throw new RuntimeException(e);
-								}
-							}
 						}
+					}
 
-					};
+				};
 
-					Thread thread = new Thread(runnable);
+				Thread thread = new Thread(runnable);
 
-					thread.start();
+				thread.start();
 
-					Socket socket = serverSocket.accept();
+				Socket socket = serverSocket.accept();
 
-					socket.close();
-				}
-				finally {
-					serverSocket.close();
-				}
+				socket.close();
 			}
+			finally {
+				serverSocket.close();
+			}
+		}
 
-		};
-		%>
+	};
+	%>
 
 	localhost:4321=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4316);
+		protected void test() throws Exception {
+			ServerSocket serverSocket = new ServerSocket(4316);
 
-				serverSocket.setSoTimeout(1000);
+			serverSocket.setSoTimeout(1000);
 
-				try {
-					Runnable runnable = new Runnable() {
+			try {
+				Runnable runnable = new Runnable() {
 
-						public void run() {
-							Socket socket = new Socket();
+					public void run() {
+						Socket socket = new Socket();
 
+						try {
+							socket.setSoLinger(true, 0);
+
+							socket.bind(new InetSocketAddress("localhost", 4321));
+
+							socket.connect(new InetSocketAddress("localhost", 4316), 500);
+						}
+						catch (Exception e) {
+							throw new RuntimeException(e);
+						}
+						finally {
 							try {
-								socket.setSoLinger(true, 0);
-
-								socket.bind(new InetSocketAddress("localhost", 4321));
-
-								socket.connect(new InetSocketAddress("localhost", 4316), 500);
+								socket.close();
 							}
 							catch (Exception e) {
 								throw new RuntimeException(e);
 							}
-							finally {
-								try {
-									socket.close();
-								}
-								catch (Exception e) {
-									throw new RuntimeException(e);
-								}
-							}
 						}
+					}
 
-					};
+				};
 
-					Thread thread = new Thread(runnable);
+				Thread thread = new Thread(runnable);
 
-					thread.start();
+				thread.start();
 
-					Socket socket = serverSocket.accept();
+				Socket socket = serverSocket.accept();
 
-					socket.close();
-				}
-				finally {
-					serverSocket.close();
-				}
+				socket.close();
 			}
+			finally {
+				serverSocket.close();
+			}
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -2101,93 +2060,93 @@
 <p>
 	www.abc.com:80=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				HttpUtil.URLtoString("http://www.abc.com");
-			}
+		protected void test() throws Exception {
+			HttpUtil.URLtoString("http://www.abc.com");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	www.cbs.com:80=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				HttpUtil.URLtoString("http://www.cbs.com");
-			}
+		protected void test() throws Exception {
+			HttpUtil.URLtoString("http://www.cbs.com");
+		}
 
-		};
-		%>
+	};
+	%>
 
 	www.msn.com:80=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				new Socket("www.msn.com", 80);
-			}
+		protected void test() throws Exception {
+			new Socket("www.msn.com", 80);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	www.google.com:80=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Socket socket = new Socket("www.google.com", 80);
+		protected void test() throws Exception {
+			Socket socket = new Socket("www.google.com", 80);
 
-				socket.close();
-			}
+			socket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	www.google.com:443=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Socket socket = new Socket("www.google.com", 443);
+		protected void test() throws Exception {
+			Socket socket = new Socket("www.google.com", 443);
 
-				socket.close();
-			}
+			socket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	www.yahoo.com:80=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				new Socket("www.yahoo.com", 80);
-			}
+		protected void test() throws Exception {
+			new Socket("www.yahoo.com", 80);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	www.yahoo.com:443=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				Socket socket = new Socket("www.yahoo.com", 443);
+		protected void test() throws Exception {
+			Socket socket = new Socket("www.yahoo.com", 443);
 
-				socket.close();
-			}
+			socket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -2198,97 +2157,97 @@
 <p>
 	4315=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				new ServerSocket(4315);
-			}
+		protected void test() throws Exception {
+			new ServerSocket(4315);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	4316=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4316);
+		protected void test() throws Exception {
+			ServerSocket serverSocket = new ServerSocket(4316);
 
-				serverSocket.close();
-			}
+			serverSocket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	4317=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4317);
+		protected void test() throws Exception {
+			ServerSocket serverSocket = new ServerSocket(4317);
 
-				serverSocket.close();
-			}
+			serverSocket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	4318=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4318);
+		protected void test() throws Exception {
+			ServerSocket serverSocket = new ServerSocket(4318);
 
-				serverSocket.close();
-			}
+			serverSocket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	4319=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				new ServerSocket(4319);
-			}
+		protected void test() throws Exception {
+			new ServerSocket(4319);
+		}
 
-		};
-		%>
+	};
+	%>
 
 	4320=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4320);
+		protected void test() throws Exception {
+			ServerSocket serverSocket = new ServerSocket(4320);
 
-				serverSocket.close();
-			}
+			serverSocket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 	4321=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, false) {
 
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4321);
+		protected void test() throws Exception {
+			ServerSocket serverSocket = new ServerSocket(4321);
 
-				serverSocket.close();
-			}
+			serverSocket.close();
+		}
 
-		};
-		%>
+	};
+	%>
 
 </p>
 
@@ -2489,12 +2448,10 @@
 </p>
 
 <%
-DB db = DBFactoryUtil.getDB();
-
-String dbType = db.getType();
+DB db = DBManagerUtil.getDB();
 %>
 
-<c:if test="<%= dbType.equals(DB.TYPE_MYSQL) %>">
+<c:if test="<%= db.getDBType() == DBType.MYSQL %>">
 	<p>
 		<h3>Replace</h3>
 	</p>
@@ -2632,7 +2589,7 @@ String dbType = db.getType();
 
 </p>
 
-<c:if test="<%= dbType.equals(DB.TYPE_MYSQL) %>">
+<c:if test="<%= db.getDBType() == DBType.MYSQL %>">
 	<p>
 		<h3>Truncate</h3>
 	</p>
@@ -2777,11 +2734,11 @@ String dbType = db.getType();
 <p>
 
 	<%
-	Map<String, Boolean> results = TestPACLUtil.testCurrentThread(themeDisplay.getUserId());
+	Map<String, Boolean> testPACLUtilResults = TestPACLUtil.testCurrentThread(themeDisplay.getUserId());
 	%>
 
-	PortalServiceUtil#getBuildNumber=<%= _assertTrue(results.get("PortalServiceUtil#getBuildNumber")) %><br />
-	UserLocalServiceUtil#getUser=<%= _assertTrue(results.get("UserLocalServiceUtil#getUser")) %>
+	PortalServiceUtil#getBuildNumber=<%= _assertTrue(testPACLUtilResults.get("PortalServiceUtil#getBuildNumber")) %><br />
+	UserLocalServiceUtil#getUser=<%= _assertTrue(testPACLUtilResults.get("UserLocalServiceUtil#getUser")) %>
 </p>
 
 <p>
@@ -2791,11 +2748,11 @@ String dbType = db.getType();
 <p>
 
 	<%
-	results = TestPACLUtil.testMessageBusThread(themeDisplay.getUserId());
+	testPACLUtilResults = TestPACLUtil.testMessageBusThread(themeDisplay.getUserId());
 	%>
 
-	PortalServiceUtil#getBuildNumber=<%= _assertTrue(results.get("PortalServiceUtil#getBuildNumber")) %><br />
-	UserLocalServiceUtil#getUser=<%= _assertTrue(results.get("UserLocalServiceUtil#getUser")) %>
+	PortalServiceUtil#getBuildNumber=<%= _assertTrue(testPACLUtilResults.get("PortalServiceUtil#getBuildNumber")) %><br />
+	UserLocalServiceUtil#getUser=<%= _assertTrue(testPACLUtilResults.get("UserLocalServiceUtil#getUser")) %>
 </p>
 
 <p>
@@ -2805,11 +2762,11 @@ String dbType = db.getType();
 <p>
 
 	<%
-	results = TestPACLUtil.testNewThread(themeDisplay.getUserId());
+	testPACLUtilResults = TestPACLUtil.testNewThread(themeDisplay.getUserId());
 	%>
 
-	PortalServiceUtil#getBuildNumber=<%= _assertTrue(results.get("PortalServiceUtil#getBuildNumber")) %><br />
-	UserLocalServiceUtil#getUser=<%= _assertTrue(results.get("UserLocalServiceUtil#getUser")) %>
+	PortalServiceUtil#getBuildNumber=<%= _assertTrue(testPACLUtilResults.get("PortalServiceUtil#getBuildNumber")) %><br />
+	UserLocalServiceUtil#getUser=<%= _assertTrue(testPACLUtilResults.get("UserLocalServiceUtil#getUser")) %>
 </p>
 
 <p>
@@ -2819,21 +2776,23 @@ String dbType = db.getType();
 <p>
 	PortalExecutorManagerUtil.shutdown("liferay/hot_deploy")=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				PortalExecutorManagerUtil.shutdown("liferay/hot_deploy");
-			}
+		protected void test() throws Exception {
+			ThreadPoolExecutor threadPoolExecutor = PortalExecutorManagerUtil.getPortalExecutor("liferay/hot_deploy");
 
-		};
-		%>
+			threadPoolExecutor.shutdown();
+		}
+
+	};
+	%>
 
 </p>
 
 <%!
 private static String _assertEquals(Object expected, Object actual) {
-	return _assertTrue(Validator.equals(expected, actual));
+	return _assertTrue(Objects.equals(expected, actual));
 }
 
 private static String _assertFalse(boolean value) {
@@ -2858,7 +2817,7 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 		super(writer, themeDisplay, expectSecurityException);
 	}
 
-	protected void testDeleteWithFile(String fileName) throws Exception {
+	protected void testDelete(String fileName) throws Exception {
 		fileName = TestPACLUtil.translateFileName(fileName);
 
 		writer.write(fileName);
@@ -2866,68 +2825,7 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 
 		File file = new File(fileName);
 
-		byte[] bytes = null;
-
-		try {
-			bytes = FileUtil.getBytes(file);
-		}
-		catch (SecurityException se) {
-			throw new Exception(se.getMessage(), se);
-		}
-
-		if (file.delete()) {
-			try {
-				FileUtil.write(file, bytes);
-			}
-			catch (SecurityException se) {
-				throw new Exception(se.getMessage(), se);
-			}
-
-			if (expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
-		else {
-			if (!expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
-	}
-
-	protected void testDeleteWithFileUtil(String fileName) throws Exception {
-		fileName = TestPACLUtil.translateFileName(fileName);
-
-		writer.write(fileName);
-		writer.write("=");
-
-		File file = new File(fileName);
-
-		byte[] bytes = null;
-
-		try {
-			bytes = FileUtil.getBytes(file);
-		}
-		catch (SecurityException se) {
-			throw new Exception(se.getMessage(), se);
-		}
-
-		if (FileUtil.delete(file)) {
-			try {
-				FileUtil.write(file, bytes);
-			}
-			catch (SecurityException se) {
-				throw new Exception(se.getMessage(), se);
-			}
-
-			if (expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
-		else {
-			if (!expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
+		PortalFilePermission.checkDelete(file.getPath());
 	}
 
 	protected void testExecute(String cmd) throws Exception {
@@ -2961,7 +2859,9 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 		writer.write(fileName);
 		writer.write("=");
 
-		FileUtil.read(fileName);
+		File file = new File(fileName);
+
+		PortalFilePermission.checkRead(file.getPath());
 	}
 
 	protected void testWriteWithFile(String fileName) throws Exception {
@@ -2988,9 +2888,7 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 
 		File file = new File(fileName);
 
-		byte[] bytes = FileUtil.getBytes(file);
-
-		FileUtil.write(file, bytes);
+		PortalFilePermission.checkWrite(file.getPath());
 	}
 
 }
@@ -3072,6 +2970,8 @@ private class SecurityExceptionTest {
 			}
 		}
 		catch (Exception e) {
+			e.printStackTrace();
+
 			writer.write("FAILED with " + e.getMessage());
 		}
 
@@ -3094,7 +2994,7 @@ private class SQLSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void executeDB(String sql) throws Exception {
-		DB db = DBFactoryUtil.getDB();
+		DB db = DBManagerUtil.getDB();
 
 		db.runSQL(sql);
 	}

@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -26,13 +26,15 @@
 	int messagePos = 0;
 
 	while ((messagePos = html.indexOf("<div class=\"message-container", messagePos)) > -1) {
-		int x = html.indexOf("<ul class=\"edit-controls lfr-component\">", messagePos);
+		int x = html.indexOf("<ul class=\"edit-controls", messagePos);
 		int y = html.indexOf("</ul>", x);
 
-		int messageIdPos = html.indexOf("_19_messageId=", x);
+		String messageIdParameter = renderResponse.getNamespace() + "messageId=";
+
+		int messageIdPos = html.indexOf(messageIdParameter, x);
 
 		if ((x > 0) && (y > 0) && (messageIdPos > 0)) {
-			String messageId = html.substring(messageIdPos + 14, html.indexOf("\"", messageIdPos));
+			String messageId = html.substring(messageIdPos + messageIdParameter.length(), html.indexOf("\"", messageIdPos));
 
 			MBMessage message = null;
 
@@ -57,7 +59,7 @@
 					<c:when test="<%= spam %>">
 						<li>
 							<portlet:actionURL var="notSpamURL">
-								<portlet:param name="struts_action" value="/message_boards/edit_message" />
+								<portlet:param name="struts_action" value="/message_boards/akismet_edit_message" />
 								<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="messageId" value="<%= messageId %>" />
@@ -65,7 +67,7 @@
 							</portlet:actionURL>
 
 							<liferay-ui:icon
-								image="../mail/compose"
+								iconCssClass="icon-envelope-alt"
 								label="<%= true %>"
 								message="not-spam"
 								url="<%= notSpamURL %>"
@@ -75,7 +77,7 @@
 					<c:otherwise>
 						<li>
 							<portlet:actionURL var="markAsSpamURL">
-								<portlet:param name="struts_action" value="/message_boards/edit_message" />
+								<portlet:param name="struts_action" value="/message_boards/akismet_edit_message" />
 								<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="messageId" value="<%= messageId %>" />
@@ -83,7 +85,7 @@
 							</portlet:actionURL>
 
 							<liferay-ui:icon
-								image="../mail/delete"
+								iconCssClass="icon-remove"
 								label="<%= true %>"
 								message="mark-as-spam"
 								url="<%= markAsSpamURL %>"

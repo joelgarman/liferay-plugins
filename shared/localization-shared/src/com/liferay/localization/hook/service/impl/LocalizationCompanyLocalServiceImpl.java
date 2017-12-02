@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -16,10 +16,9 @@ package com.liferay.localization.hook.service.impl;
 
 import com.liferay.localization.util.InstanceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.service.CompanyLocalService;
-import com.liferay.portal.service.CompanyLocalServiceWrapper;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.service.CompanyLocalService;
+import com.liferay.portal.kernel.service.CompanyLocalServiceWrapper;
 
 /**
  * @author Brian Wing Shun Chan
@@ -34,10 +33,10 @@ public class LocalizationCompanyLocalServiceImpl
 	}
 
 	@Override
-	public Company checkCompany(String webId, String mx, String shardName)
-		throws PortalException, SystemException {
+	public Company checkCompany(String webId, String mx)
+		throws PortalException {
 
-		Company company = super.checkCompany(webId, mx, shardName);
+		Company company = super.checkCompany(webId, mx);
 
 		InstanceUtil.initInstance(company.getCompanyId());
 

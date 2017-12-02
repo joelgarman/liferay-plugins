@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -31,21 +31,25 @@ public class CDISessionImpl extends CDISession {
 		super(portletSession);
 	}
 
+	@Override
 	public ServletContext getServletContext() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public javax.servlet.http.HttpSessionContext getSessionContext() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Object getValue(String name) {
 		PortletSession portletSession = getPortletSession();
 
 		return portletSession.getAttribute(name);
 	}
 
+	@Override
 	public String[] getValueNames() {
 		PortletSession portletSession = getPortletSession();
 
@@ -55,7 +59,7 @@ public class CDISessionImpl extends CDISession {
 			return null;
 		}
 
-		List<String> valueNames = new ArrayList<String>();
+		List<String> valueNames = new ArrayList<>();
 
 		while (attributeNames.hasMoreElements()) {
 			String attributeName = attributeNames.nextElement();
@@ -66,12 +70,14 @@ public class CDISessionImpl extends CDISession {
 		return valueNames.toArray(new String[valueNames.size()]);
 	}
 
+	@Override
 	public void putValue(String name, Object value) {
 		PortletSession portletSession = getPortletSession();
 
 		portletSession.setAttribute(name, value);
 	}
 
+	@Override
 	public void removeValue(String name) {
 		PortletSession portletSession = getPortletSession();
 

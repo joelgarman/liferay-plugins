@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,22 +14,23 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.asset.kernel.model.AssetRenderer;
+import com.liferay.bookmarks.model.BookmarksEntry;
+import com.liferay.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.asset.model.AssetRenderer;
-import com.liferay.portlet.bookmarks.model.BookmarksEntry;
-import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
-import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.portlet.social.model.SocialActivitySet;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.so.activities.util.SocialActivityKeyConstants;
+import com.liferay.social.kernel.model.SocialActivity;
+import com.liferay.social.kernel.model.SocialActivityFeedEntry;
+import com.liferay.social.kernel.model.SocialActivitySet;
+import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
+import com.liferay.social.kernel.service.SocialActivitySetLocalServiceUtil;
 
 import java.io.IOException;
 
@@ -56,20 +57,16 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
-				activitySet =
-					SocialActivitySetLocalServiceUtil.getUserActivitySet(
-						activity.getGroupId(), activity.getUserId(),
-						activity.getClassNameId(), activity.getType());
-			}
-			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+			if (activity.getType() ==
+					SocialActivityKeyConstants.BOOKMARKS_UPDATE_ENTRY) {
+
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
 			}
 
-			if ((activitySet != null) && !isExpired(activitySet)) {
+			if ((activitySet != null) && !isExpired(activitySet, false)) {
 				return activitySet.getActivitySetId();
 			}
 		}
@@ -93,7 +90,9 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+		if (activitySet.getType() ==
+				SocialActivityKeyConstants.BOOKMARKS_UPDATE_ENTRY) {
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
@@ -114,7 +113,7 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 
 		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(classPK);
 
-		sb.append(entry.getDescription());
+		sb.append(HtmlUtil.stripHtml(entry.getDescription()));
 
 		sb.append("</div></div>");
 
@@ -141,7 +140,7 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 					assetRenderer.getIconPath(liferayPortletRequest))) {
 
 			return wrapLink(
-				getLinkURL(className, classPK, serviceContext),
+				entry.getUrl(),
 				assetRenderer.getIconPath(liferayPortletRequest),
 				HtmlUtil.escape(
 					assetRenderer.getTitle(serviceContext.getLocale())));
@@ -162,7 +161,7 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 			activity.getClassName(), activity.getClassPK());
 
 		String body = StringUtil.shorten(
-			assetRenderer.getSummary(serviceContext.getLocale()), 200);
+			HtmlUtil.escape(assetRenderer.getSummary()), 200);
 
 		return new SocialActivityFeedEntry(title, body);
 	}
@@ -171,10 +170,14 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 	protected String getTitlePattern(
 		String groupName, SocialActivity activity) {
 
-		if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
+		if (activity.getType() ==
+				SocialActivityKeyConstants.BOOKMARKS_ADD_ENTRY) {
+
 			return "added-a-new-bookmark";
 		}
-		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+		else if (activity.getType() ==
+					SocialActivityKeyConstants.BOOKMARKS_UPDATE_ENTRY) {
+
 			return "updated-a-bookmark";
 		}
 
@@ -185,10 +188,14 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 	protected String getTitlePattern(
 		String groupName, SocialActivitySet activitySet) {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
+		if (activitySet.getType() ==
+				SocialActivityKeyConstants.BOOKMARKS_ADD_ENTRY) {
+
 			return "added-x-new-bookmarks";
 		}
-		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+		else if (activitySet.getType() ==
+					SocialActivityKeyConstants.BOOKMARKS_UPDATE_ENTRY) {
+
 			return "made-x-updates-to-a-bookmark";
 		}
 
@@ -221,18 +228,6 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 
 		return false;
 	}
-
-	/**
-	 * {@link
-	 * com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#ADD_ENTRY}
-	 */
-	private static final int _ACTIVITY_KEY_ADD_ENTRY = 1;
-
-	/**
-	 * {@link
-	 * com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#UPDATE_ENTRY}
-	 */
-	private static final int _ACTIVITY_KEY_UPDATE_ENTRY = 2;
 
 	private static final String[] _CLASS_NAMES =
 		{BookmarksEntry.class.getName()};

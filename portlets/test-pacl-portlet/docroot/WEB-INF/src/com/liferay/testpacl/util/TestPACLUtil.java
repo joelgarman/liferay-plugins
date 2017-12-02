@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -19,12 +19,11 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.service.PortalServiceUtil;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.service.PortalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.io.File;
 
@@ -39,7 +38,7 @@ public class TestPACLUtil {
 	public static final String TEST_FIELD = "TEST_FIELD";
 
 	public static Map<String, Boolean> testCurrentThread(long userId) {
-		Map<String, Boolean> results = new HashMap<String, Boolean>();
+		Map<String, Boolean> results = new HashMap<>();
 
 		try {
 			PortalServiceUtil.getBuildNumber();
@@ -82,7 +81,7 @@ public class TestPACLUtil {
 	public static Map<String, Boolean> testNewThread(final long userId)
 		throws Exception {
 
-		final Map<String, Boolean> results = new HashMap<String, Boolean>();
+		final Map<String, Boolean> results = new HashMap<>();
 
 		Thread thread = new Thread() {
 
@@ -131,17 +130,7 @@ public class TestPACLUtil {
 
 			fileName = StringUtil.replace(fileName, "../webapps", installedDir);
 
-			if (ServerDetector.isGeronimo()) {
-				String geronimoHome = System.getProperty(
-					"org.apache.geronimo.home.dir");
-				String version = ReleaseInfo.getVersion();
-
-				fileName = StringUtil.replace(
-					fileName, installedDir + "/chat-portlet/",
-					geronimoHome + "/repository/liferay/chat-portlet/" +
-						version + ".1/chat-portlet-" + version + ".1.car/");
-			}
-			else if (ServerDetector.isGlassfish()) {
+			if (ServerDetector.isGlassfish()) {
 				fileName = StringUtil.replace(
 					fileName, "autodeploy", "applications");
 			}
@@ -150,11 +139,13 @@ public class TestPACLUtil {
 					fileName, "/chat-portlet/", "/chat-portlet.war/");
 			}
 			else if (ServerDetector.isWebSphere()) {
+				String serverRoot = System.getProperty("server.root");
+				String cellName = System.getenv("WAS_CELL");
+
 				fileName = StringUtil.replace(
 					fileName, installedDir + "/chat-portlet/",
-					System.getenv("USER_INSTALL_ROOT") +
-						"/installedApps/liferay-cell/chat-portlet.ear" +
-							"/chat-portlet.war/");
+					serverRoot + "/installedApps/" + cellName +
+						"/chat-portlet.ear/chat-portlet.war/");
 			}
 		}
 

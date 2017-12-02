@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -16,7 +16,7 @@
 
 <%@ include file="/html/taglib/init.jsp" %>
 
-<%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
+<%@ page import="com.liferay.message.boards.kernel.model.MBMessage" %>
 <%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
 
 <%
@@ -38,15 +38,15 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 		if (message.getUserId() == themeDisplay.getUserId()) {
 			displayMessage = true;
 
-			String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.toLabel(status));
+			String deniedMessage = LanguageUtil.get(request, WorkflowConstants.getStatusLabel(status));
 
 			int pos = html.indexOf(deniedMessage);
 
 			StringBundler sb = new StringBundler(4);
 
 			sb.append(html.substring(0, pos + deniedMessage.length()));
-			sb.append("<br />");
-			sb.append(LanguageUtil.get(pageContext, "your-message-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible"));
+			sb.append(". ");
+			sb.append(LanguageUtil.get(request, "your-message-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible"));
 			sb.append(html.substring(pos + deniedMessage.length()));
 
 			html = sb.toString();
@@ -60,7 +60,7 @@ if (bean instanceof WikiPage) {
 	if ((wikiPage.getUserId() == themeDisplay.getUserId()) && (_isSpam(wikiPage) || _isPendingApproval(wikiPage))) {
 		displayMessage = true;
 
-		String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.toLabel(status));
+		String deniedMessage = LanguageUtil.get(request, WorkflowConstants.getStatusLabel(status));
 
 		int pos = html.indexOf(deniedMessage);
 
@@ -68,7 +68,7 @@ if (bean instanceof WikiPage) {
 
 		sb.append(html.substring(0, pos + deniedMessage.length()));
 		sb.append("<br />");
-		sb.append(LanguageUtil.get(pageContext, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible"));
+		sb.append(LanguageUtil.get(request, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible"));
 		sb.append(html.substring(pos + deniedMessage.length()));
 
 		html = sb.toString();
@@ -77,7 +77,7 @@ if (bean instanceof WikiPage) {
 %>
 
 <c:if test="<%= displayMessage %>">
-	<div class="portlet-msg-error">
+	<div class="alert alert-danger">
 </c:if>
 
 <%= html %>
@@ -88,7 +88,7 @@ if (bean instanceof WikiPage) {
 
 <%!
 private static boolean _isPendingApproval(WikiPage wikiPage) {
-	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL)) {
+	if ((wikiPage == null) || !Objects.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL)) {
 		return false;
 	}
 
@@ -96,7 +96,7 @@ private static boolean _isPendingApproval(WikiPage wikiPage) {
 }
 
 private static boolean _isSpam(WikiPage wikiPage) {
-	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM)) {
+	if ((wikiPage == null) || !Objects.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM)) {
 		return false;
 	}
 

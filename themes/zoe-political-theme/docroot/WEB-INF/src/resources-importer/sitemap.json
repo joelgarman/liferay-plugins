@@ -4,20 +4,20 @@
 		{
 			"columns": [
 				[
-					"Main Banner.html"
+					"Main Banner.xml"
 				],
 				[
-					"Content.html"
+					"Content.xml"
 				],
 				[
 					{
 						"portletId": "56",
 						"portletPreferences": {
-							"articleId": "Stay Informed.html",
+							"articleId": "Stay Informed.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
-							"portletSetupUseCustomTitle": "true",
-							"portletSetupTitle_en_US": "Stay Informed"
+							"portletSetupTitle_en_US": "Stay Informed",
+							"portletSetupUseCustomTitle": "true"
 						}
 					},
 					{
@@ -26,8 +26,8 @@
 							"articleId": "Twitter Block.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
-							"portletSetupUseCustomTitle": "true",
-							"portletSetupTitle_en_US": "Twitter"
+							"portletSetupTitle_en_US": "Twitter",
+							"portletSetupUseCustomTitle": "true"
 						}
 					}
 				]
@@ -35,7 +35,7 @@
 			"friendlyURL": "/home",
 			"layoutTemplateId": "1_2_columns_ii",
 			"name": "Home",
-			"title": "Home",
+			"title": "Home"
 		},
 		{
 			"friendlyURL": "/bio",

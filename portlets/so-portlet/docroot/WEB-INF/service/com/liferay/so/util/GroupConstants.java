@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -20,7 +20,8 @@ package com.liferay.so.util;
 /**
  * @author Jonathan Lee
  */
-public class GroupConstants extends com.liferay.portal.model.GroupConstants {
+public class GroupConstants
+	extends com.liferay.portal.kernel.model.GroupConstants {
 
 	public static final int TYPE_SITE_PRIVATE_RESTRICTED = 102;
 

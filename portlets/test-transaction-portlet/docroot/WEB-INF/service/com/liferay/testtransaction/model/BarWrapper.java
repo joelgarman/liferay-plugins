@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,8 +14,15 @@
 
 package com.liferay.testtransaction.model;
 
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.expando.kernel.model.ExpandoBridge;
+
+import com.liferay.portal.kernel.model.ModelWrapper;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ModelWrapper;
+
+import java.io.Serializable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +36,7 @@ import java.util.Map;
  * @see Bar
  * @generated
  */
+@ProviderType
 public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	public BarWrapper(Bar bar) {
 		_bar = bar;
@@ -69,84 +77,9 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		}
 	}
 
-	/**
-	* Returns the primary key of this bar.
-	*
-	* @return the primary key of this bar
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _bar.getPrimaryKey();
-	}
-
-	/**
-	* Sets the primary key of this bar.
-	*
-	* @param primaryKey the primary key of this bar
-	*/
-	@Override
-	public void setPrimaryKey(long primaryKey) {
-		_bar.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the bar ID of this bar.
-	*
-	* @return the bar ID of this bar
-	*/
-	@Override
-	public long getBarId() {
-		return _bar.getBarId();
-	}
-
-	/**
-	* Sets the bar ID of this bar.
-	*
-	* @param barId the bar ID of this bar
-	*/
-	@Override
-	public void setBarId(long barId) {
-		_bar.setBarId(barId);
-	}
-
-	/**
-	* Returns the text of this bar.
-	*
-	* @return the text of this bar
-	*/
-	@Override
-	public java.lang.String getText() {
-		return _bar.getText();
-	}
-
-	/**
-	* Sets the text of this bar.
-	*
-	* @param text the text of this bar
-	*/
-	@Override
-	public void setText(java.lang.String text) {
-		_bar.setText(text);
-	}
-
-	@Override
-	public boolean isNew() {
-		return _bar.isNew();
-	}
-
-	@Override
-	public void setNew(boolean n) {
-		_bar.setNew(n);
-	}
-
 	@Override
 	public boolean isCachedModel() {
 		return _bar.isCachedModel();
-	}
-
-	@Override
-	public void setCachedModel(boolean cachedModel) {
-		_bar.setCachedModel(cachedModel);
 	}
 
 	@Override
@@ -155,55 +88,17 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	}
 
 	@Override
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _bar.getPrimaryKeyObj();
+	public boolean isNew() {
+		return _bar.isNew();
 	}
 
 	@Override
-	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
-		_bar.setPrimaryKeyObj(primaryKeyObj);
-	}
-
-	@Override
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+	public ExpandoBridge getExpandoBridge() {
 		return _bar.getExpandoBridge();
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
-		_bar.setExpandoBridgeAttributes(baseModel);
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
-		_bar.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		_bar.setExpandoBridgeAttributes(serviceContext);
-	}
-
-	@Override
-	public java.lang.Object clone() {
-		return new BarWrapper((Bar)_bar.clone());
-	}
-
-	@Override
-	public int compareTo(com.liferay.testtransaction.model.Bar bar) {
-		return _bar.compareTo(bar);
-	}
-
-	@Override
-	public int hashCode() {
-		return _bar.hashCode();
-	}
-
-	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
 		return _bar.toCacheModel();
 	}
 
@@ -218,6 +113,36 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	}
 
 	@Override
+	public int compareTo(com.liferay.testtransaction.model.Bar bar) {
+		return _bar.compareTo(bar);
+	}
+
+	@Override
+	public int hashCode() {
+		return _bar.hashCode();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _bar.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new BarWrapper((Bar)_bar.clone());
+	}
+
+	/**
+	* Returns the text of this bar.
+	*
+	* @return the text of this bar
+	*/
+	@Override
+	public java.lang.String getText() {
+		return _bar.getText();
+	}
+
+	@Override
 	public java.lang.String toString() {
 		return _bar.toString();
 	}
@@ -227,10 +152,90 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return _bar.toXmlString();
 	}
 
+	/**
+	* Returns the bar ID of this bar.
+	*
+	* @return the bar ID of this bar
+	*/
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public long getBarId() {
+		return _bar.getBarId();
+	}
+
+	/**
+	* Returns the primary key of this bar.
+	*
+	* @return the primary key of this bar
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _bar.getPrimaryKey();
+	}
+
+	@Override
+	public void persist() {
 		_bar.persist();
+	}
+
+	/**
+	* Sets the bar ID of this bar.
+	*
+	* @param barId the bar ID of this bar
+	*/
+	@Override
+	public void setBarId(long barId) {
+		_bar.setBarId(barId);
+	}
+
+	@Override
+	public void setCachedModel(boolean cachedModel) {
+		_bar.setCachedModel(cachedModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_bar.setExpandoBridgeAttributes(expandoBridge);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_bar.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		_bar.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	@Override
+	public void setNew(boolean n) {
+		_bar.setNew(n);
+	}
+
+	/**
+	* Sets the primary key of this bar.
+	*
+	* @param primaryKey the primary key of this bar
+	*/
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		_bar.setPrimaryKey(primaryKey);
+	}
+
+	@Override
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		_bar.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the text of this bar.
+	*
+	* @param text the text of this bar
+	*/
+	@Override
+	public void setText(java.lang.String text) {
+		_bar.setText(text);
 	}
 
 	@Override
@@ -252,16 +257,19 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	public Bar getWrappedBar() {
+	@Override
+	public Bar getWrappedModel() {
 		return _bar;
 	}
 
 	@Override
-	public Bar getWrappedModel() {
-		return _bar;
+	public boolean isEntityCacheEnabled() {
+		return _bar.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _bar.isFinderCacheEnabled();
 	}
 
 	@Override
@@ -269,5 +277,5 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		_bar.resetOriginalValues();
 	}
 
-	private Bar _bar;
+	private final Bar _bar;
 }

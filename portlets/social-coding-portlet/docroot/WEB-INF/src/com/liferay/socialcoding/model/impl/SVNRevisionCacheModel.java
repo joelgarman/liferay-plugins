@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,9 +14,12 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.model.CacheModel;
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.CacheModel;
 
 import com.liferay.socialcoding.model.SVNRevision;
 
@@ -34,8 +37,33 @@ import java.util.Date;
  * @see SVNRevision
  * @generated
  */
+@ProviderType
 public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SVNRevisionCacheModel)) {
+			return false;
+		}
+
+		SVNRevisionCacheModel svnRevisionCacheModel = (SVNRevisionCacheModel)obj;
+
+		if (svnRevisionId == svnRevisionCacheModel.svnRevisionId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, svnRevisionId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(13);
@@ -97,7 +125,9 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		svnRevisionId = objectInput.readLong();
 		svnUserId = objectInput.readUTF();
 		createDate = objectInput.readLong();
+
 		svnRepositoryId = objectInput.readLong();
+
 		revisionNumber = objectInput.readLong();
 		comments = objectInput.readUTF();
 	}
@@ -115,7 +145,9 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		}
 
 		objectOutput.writeLong(createDate);
+
 		objectOutput.writeLong(svnRepositoryId);
+
 		objectOutput.writeLong(revisionNumber);
 
 		if (comments == null) {

@@ -232,36 +232,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>BlogsEntryLocalServiceImpl</name>
-		<type>com.liferay.testpacl.hook.service.impl.BlogsEntryLocalServiceImpl</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>BlogsEntryLocalServiceImpl</name>
-			<param>
-				<name>blogsEntryLocalService</name>
-				<type>com.liferay.portlet.blogs.service.BlogsEntryLocalService</type>
-			</param>
-		</method>
-		<method>
-			<name>getBlogsEntriesCount</name>
-		</method>
-	</javadoc>
-	<javadoc>
-		<name>BlogsStatsUserLocalServiceImpl</name>
-		<type>com.liferay.testpacl.hook.service.impl.BlogsStatsUserLocalServiceImpl</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>BlogsStatsUserLocalServiceImpl</name>
-			<param>
-				<name>blogsStatsUserLocalService</name>
-				<type>com.liferay.portlet.blogs.service.BlogsStatsUserLocalService</type>
-			</param>
-		</method>
-		<method>
-			<name>getBlogsStatsUsersCount</name>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>TestPACLBlogsEntryLocalServiceImpl</name>
 		<type>com.liferay.testpacl.hook.service.impl.TestPACLBlogsEntryLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -496,244 +466,6 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>FooLocalServiceClpInvoker</name>
-		<type>com.liferay.testpacl.service.base.FooLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>FooLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName47</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes47</name>
-		</field>
-		<field>
-			<name>_methodName48</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes48</name>
-		</field>
-		<field>
-			<name>_methodName53</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes53</name>
-		</field>
-		<field>
-			<name>_methodName54</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes54</name>
-		</field>
-		<field>
-			<name>_methodName55</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes55</name>
-		</field>
-		<field>
-			<name>_methodName56</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes56</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName59</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes59</name>
-		</field>
-		<field>
-			<name>_methodName60</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes60</name>
-		</field>
-		<field>
-			<name>_methodName61</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes61</name>
-		</field>
-		<field>
-			<name>_methodName62</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes62</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-		<field>
-			<name>_methodName65</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes65</name>
-		</field>
-		<field>
-			<name>_methodName66</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes66</name>
-		</field>
-		<field>
-			<name>_methodName67</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes67</name>
-		</field>
-		<field>
-			<name>_methodName68</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes68</name>
-		</field>
-		<field>
-			<name>_methodName69</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes69</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>FooLocalServiceImpl</name>
 		<type>com.liferay.testpacl.service.impl.FooLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -752,11 +484,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getCompanyUtil_FindByPrimaryKey</name>
@@ -771,11 +498,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -794,11 +516,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getEntryLocalServiceUtil_GetEntry</name>
@@ -813,11 +530,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -836,11 +548,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getGroupUtil_FindByPrimaryKey</name>
@@ -855,11 +562,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -880,11 +582,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getPortalServiceUtil_GetBuildNumber</name>
@@ -903,11 +600,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getReleaseInfo_GetBuildNumber</name>
@@ -930,11 +622,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getStatusLocalServiceUtil_GetStatuses</name>
@@ -951,11 +638,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getUserPersistence_FindByPrimaryKey</name>
@@ -972,11 +654,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getUserUtil_FindByPrimaryKey</name>
@@ -991,11 +668,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>

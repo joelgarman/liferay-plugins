@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,7 +14,7 @@
 
 package com.liferay.testtransaction.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
+import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.service.BarLocalServiceUtil;
@@ -28,9 +28,10 @@ import com.liferay.testtransaction.service.BarLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see BarImpl
- * @see com.liferay.testtransaction.model.Bar
+ * @see Bar
  * @generated
  */
+@ProviderType
 public abstract class BarBaseImpl extends BarModelImpl implements Bar {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -38,7 +39,7 @@ public abstract class BarBaseImpl extends BarModelImpl implements Bar {
 	 * Never modify or reference this class directly. All methods that expect a bar model instance should use the {@link Bar} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			BarLocalServiceUtil.addBar(this);
 		}

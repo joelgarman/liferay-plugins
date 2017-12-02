@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.sampleservicebuilder.service.FooServiceUtil;
 
 import java.util.Arrays;
@@ -22,58 +24,57 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class FooServiceClpInvoker {
 	public FooServiceClpInvoker() {
-		_methodName30 = "getBeanIdentifier";
+		_methodName36 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes30 = new String[] {  };
+		_methodParameterTypes36 = new String[] {  };
 
-		_methodName31 = "setBeanIdentifier";
+		_methodName41 = "getFoos";
 
-		_methodParameterTypes31 = new String[] { "java.lang.String" };
+		_methodParameterTypes41 = new String[] {  };
 
-		_methodName36 = "getUser";
+		_methodName42 = "getUser";
 
-		_methodParameterTypes36 = new String[] { "long" };
+		_methodParameterTypes42 = new String[] { "long" };
 
-		_methodName37 = "getUserPlacesGroups";
+		_methodName43 = "getUserSitesGroups";
 
-		_methodParameterTypes37 = new String[] {  };
+		_methodParameterTypes43 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
-			return FooServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
-			FooServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
 		if (_methodName36.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+			return FooServiceUtil.getOSGiServiceIdentifier();
+		}
+
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			return FooServiceUtil.getFoos();
+		}
+
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return FooServiceUtil.getUser(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName37.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
-			return FooServiceUtil.getUserPlacesGroups();
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+			return FooServiceUtil.getUserSitesGroups();
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
 	private String _methodName36;
 	private String[] _methodParameterTypes36;
-	private String _methodName37;
-	private String[] _methodParameterTypes37;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 }

@@ -12,11 +12,6 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>doReceive</name>
@@ -188,11 +183,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -300,28 +290,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>getWikiPage</name>
-			<param>
-				<name>wikiPage</name>
-				<type>com.liferay.portlet.wiki.model.WikiPage</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>previous</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>updateStatus</name>
+			<name>updateSummary</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
@@ -337,16 +306,11 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>AkismetMBMessageListener</name>
-		<type>com.liferay.akismet.hook.listeners.AkismetMBMessageListener</type>
+		<name>AkismetMBMessageModelListener</name>
+		<type>com.liferay.akismet.hook.listeners.AkismetMBMessageModelListener</type>
 		<author><![CDATA[Amos Fong]]></author>
 		<method>
 			<name>onAfterRemove</name>
@@ -358,8 +322,8 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>AkismetWikiPageListener</name>
-		<type>com.liferay.akismet.hook.listeners.AkismetWikiPageListener</type>
+		<name>AkismetWikiPageModelListener</name>
+		<type>com.liferay.akismet.hook.listeners.AkismetWikiPageModelListener</type>
 		<author><![CDATA[Peter Shin]]></author>
 		<method>
 			<name>onAfterRemove</name>
@@ -443,11 +407,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>addMessage</name>
@@ -529,11 +488,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>addMessage</name>
@@ -605,11 +559,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateDiscussionMessage</name>
@@ -654,11 +603,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -717,11 +661,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getPermalink</name>
@@ -759,11 +698,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>isMessageBoardsEnabled</name>
@@ -790,11 +724,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateAkismetData</name>
@@ -811,11 +740,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -900,11 +824,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updatePage</name>
@@ -971,11 +890,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getPermalink</name>
@@ -1018,11 +932,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateAkismetData</name>
@@ -1039,11 +948,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -1089,11 +993,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>doReceive</name>
@@ -1133,11 +1032,6 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -1262,27 +1156,6 @@
 			</throws>
 		</method>
 		<method>
-			<name>getWikiPage</name>
-			<param>
-				<name>wikiPage</name>
-				<type>com.liferay.portlet.wiki.model.WikiPage</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>previous</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
 			<name>isSessionErrorException</name>
 			<param>
 				<name>cause</name>
@@ -1293,166 +1166,6 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
-	</javadoc>
-	<javadoc>
-		<name>AkismetDataLocalServiceClpInvoker</name>
-		<type>com.liferay.akismet.service.base.AkismetDataLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>AkismetDataLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName31</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes31</name>
-		</field>
-		<field>
-			<name>_methodName32</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes32</name>
-		</field>
-		<field>
-			<name>_methodName37</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes37</name>
-		</field>
-		<field>
-			<name>_methodName38</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes38</name>
-		</field>
-		<field>
-			<name>_methodName39</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes39</name>
-		</field>
-		<field>
-			<name>_methodName40</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes40</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>AkismetDataLocalServiceImpl</name>
@@ -1466,11 +1179,6 @@
 				<type>java.util.Date</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>deleteAkismetData</name>
@@ -1489,11 +1197,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>fetchAkismetData</name>
@@ -1510,11 +1213,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateAkismetData</name>
@@ -1561,11 +1259,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -1594,10 +1287,10 @@
 			<name>URL_REST</name>
 		</field>
 		<field>
-			<name>WIKI_PAGE_PENDING_APPROVAL</name>
+			<name>WIKI_PAGE_MARKED_AS_SPAM</name>
 		</field>
 		<field>
-			<name>WIKI_PAGE_SPAM</name>
+			<name>WIKI_PAGE_PENDING_APPROVAL</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1615,14 +1308,35 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getRetainSpamTime</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getWikiPage</name>
+			<param>
+				<name>nodeId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>version</name>
+				<type>double</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>previous</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
@@ -1648,11 +1362,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>isMessageBoardsEnabled</name>
@@ -1664,11 +1373,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>isSpam</name>
@@ -1695,11 +1399,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>isWikiEnabled</name>
@@ -1711,11 +1410,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>submitHam</name>
@@ -1769,11 +1463,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>submitHam</name>
@@ -1787,11 +1476,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>submitHam</name>
@@ -1803,11 +1487,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1863,11 +1542,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>submitSpam</name>
@@ -1881,11 +1555,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>submitSpam</name>
@@ -1897,11 +1566,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1925,11 +1589,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>_getPortalURL</name>
@@ -1944,11 +1603,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -2010,11 +1664,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -2099,11 +1748,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getInteger</name>
@@ -2120,11 +1764,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getPortletPreferences</name>
@@ -2136,11 +1775,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getString</name>
@@ -2157,11 +1791,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>_getString</name>

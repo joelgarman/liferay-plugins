@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,20 +17,24 @@ package com.liferay.socialcoding.jira.social;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
-import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.social.kernel.model.BaseSocialActivityInterpreter;
+import com.liferay.social.kernel.model.SocialActivity;
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
+import com.liferay.socialcoding.util.PortletPropsValues;
 
 /**
  * @author Brian Wing Shun Chan
@@ -85,9 +89,10 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(4);
+		StringBundler sb = new StringBundler(5);
 
-		sb.append("http://support.liferay.com/browse/");
+		sb.append(PortletPropsValues.JIRA_URL);
+		sb.append("/browse/");
 
 		JIRAIssue jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
 			activity.getClassPK());
@@ -109,6 +114,11 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		return sb.toString();
+	}
+
+	@Override
+	protected ResourceBundleLoader getResourceBundleLoader() {
+		return _resourceBundleLoader;
 	}
 
 	@Override
@@ -159,7 +169,7 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		String field = jiraChangeItem.getString("field");
 
 		field = StringUtil.replace(
-			field.toLowerCase(), StringPool.SPACE, StringPool.DASH);
+			StringUtil.toLowerCase(field), CharPool.SPACE, CharPool.DASH);
 
 		String newString = jiraChangeItem.getString("newString");
 		String newValue = jiraChangeItem.getString("newValue");
@@ -206,9 +216,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		if (jiraChangeItemsJSONArray.length() == 0) {
-			return(
-				serviceContext.translate(
-					"activity-social-coding-jira-add-change-default"));
+			return serviceContext.translate(
+				"activity-social-coding-jira-add-change-default");
 		}
 
 		StringBundler sb = new StringBundler(jiraChangeItemsJSONArray.length());
@@ -226,5 +235,9 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = {JIRAIssue.class.getName()};
+
+	private final ResourceBundleLoader _resourceBundleLoader =
+		new ClassResourceBundleLoader(
+			"content.Language", JIRAActivityInterpreter.class);
 
 }

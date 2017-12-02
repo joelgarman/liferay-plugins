@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -19,11 +19,16 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
-import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portlet.social.model.SocialActivityInterpreter;
-import com.liferay.portlet.social.model.impl.SocialActivityInterpreterImpl;
-import com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil;
+import com.liferay.so.activities.util.PortletPropsKeys;
+import com.liferay.so.activities.util.PortletPropsValues;
+import com.liferay.social.kernel.model.SocialActivityInterpreter;
+import com.liferay.social.kernel.model.impl.SocialActivityInterpreterImpl;
+import com.liferay.social.kernel.service.SocialActivityInterpreterLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -46,14 +51,18 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void initSocialActivityInterpreters() {
-		String[] portletIds = PropsUtil.getArray(
-			"social.activity.interpreter.portlet.ids");
+		List<SocialActivityInterpreter> activityInterpreters =
+			SocialActivityInterpreterLocalServiceUtil.getActivityInterpreters(
+				"SO");
+
+		String[] portletIds =
+			PortletPropsValues.SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS;
 
 		for (String portletId : portletIds) {
 			Filter filter = new Filter(portletId);
 
-			String activityInterpreterClassName = PropsUtil.get(
-				"social.activity.interpreter", filter);
+			String activityInterpreterClassName = PortletProps.get(
+				PortletPropsKeys.SOCIAL_ACTIVITY_INTERPRETER, filter);
 
 			try {
 				SocialActivityInterpreter activityInterpreter =
@@ -63,6 +72,23 @@ public class StartupAction extends SimpleAction {
 
 				activityInterpreter = new SocialActivityInterpreterImpl(
 					portletId, activityInterpreter);
+
+				if (activityInterpreters != null) {
+					for (SocialActivityInterpreter curActivityInterpreter :
+							activityInterpreters) {
+
+						if (ArrayUtil.containsAll(
+								activityInterpreter.getClassNames(),
+								curActivityInterpreter.getClassNames())) {
+
+							SocialActivityInterpreterLocalServiceUtil.
+								deleteActivityInterpreter(
+									curActivityInterpreter);
+
+							break;
+						}
+					}
+				}
 
 				SocialActivityInterpreterLocalServiceUtil.
 					addActivityInterpreter(activityInterpreter);

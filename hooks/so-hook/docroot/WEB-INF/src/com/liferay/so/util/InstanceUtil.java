@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -17,39 +17,39 @@
 
 package com.liferay.so.util;
 
+import com.liferay.expando.kernel.model.ExpandoColumn;
+import com.liferay.expando.kernel.model.ExpandoColumnConstants;
+import com.liferay.expando.kernel.model.ExpandoTable;
+import com.liferay.expando.kernel.model.ExpandoTableConstants;
+import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceUtil;
+import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
+import com.liferay.expando.kernel.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.LayoutConstants;
+import com.liferay.portal.kernel.model.LayoutSetPrototype;
+import com.liferay.portal.kernel.model.Portlet;
+import com.liferay.portal.kernel.model.ResourceConstants;
+import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
+import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
+import com.liferay.portal.kernel.service.LayoutSetLocalServiceUtil;
+import com.liferay.portal.kernel.service.LayoutSetPrototypeLocalServiceUtil;
+import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
+import com.liferay.portal.kernel.service.ResourcePermissionLocalServiceUtil;
+import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutConstants;
-import com.liferay.portal.model.LayoutSetPrototype;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.User;
-import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.LayoutSetLocalServiceUtil;
-import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
-import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
-import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletPreferencesThreadLocal;
-import com.liferay.portlet.expando.model.ExpandoColumn;
-import com.liferay.portlet.expando.model.ExpandoColumnConstants;
-import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.model.ExpandoTableConstants;
-import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.site.my.sites.web.constants.MySitesPortletKeys;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -63,11 +63,7 @@ import java.util.Map;
 public class InstanceUtil {
 
 	public static void initInstance(long companyId) {
-		boolean strict = PortletPreferencesThreadLocal.isStrict();
-
 		try {
-			PortletPreferencesThreadLocal.setStrict(false);
-
 			setupRole(companyId);
 
 			setupExpando(companyId);
@@ -78,9 +74,6 @@ public class InstanceUtil {
 		}
 		catch (Exception e) {
 			_log.error(e, e);
-		}
-		finally {
-			PortletPreferencesThreadLocal.setStrict(strict);
 		}
 	}
 
@@ -101,7 +94,8 @@ public class InstanceUtil {
 
 		// My Sites
 
-		portlet = PortletLocalServiceUtil.getPortletById(PortletKeys.MY_SITES);
+		portlet = PortletLocalServiceUtil.getPortletById(
+			MySitesPortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
 
@@ -145,7 +139,7 @@ public class InstanceUtil {
 			long companyId, String name)
 		throws Exception {
 
-		Map<Locale, String> localeNamesMap = new HashMap<Locale, String>();
+		Map<Locale, String> localeNamesMap = new HashMap<>();
 
 		Locale defaultLocale = LocaleUtil.getDefault();
 
@@ -263,7 +257,7 @@ public class InstanceUtil {
 			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
+			group.getGroupId(), "so_WAR_sotheme", "01", "");
 
 		// Home
 
@@ -382,7 +376,7 @@ public class InstanceUtil {
 			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
+			group.getGroupId(), "so_WAR_sotheme", "01", "");
 
 		// Dashboard
 
@@ -489,7 +483,7 @@ public class InstanceUtil {
 			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
+			group.getGroupId(), "so_WAR_sotheme", "01", "");
 
 		// Profile
 
@@ -537,15 +531,15 @@ public class InstanceUtil {
 	protected static void setupRole(long companyId) throws Exception {
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
 			"Social Office Users have access to the Social Office Suite.");
 
 		Role role = RoleLocalServiceUtil.addRole(
-			defaultUserId, companyId, RoleConstants.SOCIAL_OFFICE_USER, null,
-			descriptionMap, RoleConstants.TYPE_REGULAR);
+			defaultUserId, null, 0, RoleConstants.SOCIAL_OFFICE_USER, null,
+			descriptionMap, RoleConstants.TYPE_REGULAR, null, null);
 
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, PortletKeys.PORTAL, ResourceConstants.SCOPE_COMPANY,

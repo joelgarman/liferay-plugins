@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -19,17 +19,20 @@ package com.liferay.contacts.contactscenter.social;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.User;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.BaseSocialRequestInterpreter;
-import com.liferay.portlet.social.model.SocialRelationConstants;
-import com.liferay.portlet.social.model.SocialRequest;
-import com.liferay.portlet.social.model.SocialRequestFeedEntry;
-import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
+import com.liferay.social.kernel.model.BaseSocialRequestInterpreter;
+import com.liferay.social.kernel.model.SocialRelationConstants;
+import com.liferay.social.kernel.model.SocialRequest;
+import com.liferay.social.kernel.model.SocialRequestFeedEntry;
+import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
+import com.liferay.social.kernel.service.SocialRelationLocalServiceUtil;
 
 /**
- * @author Ryan Park
+ * @author Hai Yu
  */
 public class ContactsCenterRequestInterpreter
 	extends BaseSocialRequestInterpreter {
@@ -44,26 +47,34 @@ public class ContactsCenterRequestInterpreter
 			SocialRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		int requestType = request.getType();
-
-		// Title
-
-		String title = StringPool.BLANK;
-
-		if (requestType == SocialRelationConstants.TYPE_BI_CONNECTION) {
-			String creatorUserName = getUserNameLink(
-				request.getUserId(), themeDisplay);
-
-			title = themeDisplay.translate(
-				"request-social-networking-summary-add-connection",
-				new Object[] {creatorUserName});
+		if (request.getType() != SocialRelationConstants.TYPE_BI_CONNECTION) {
+			return new SocialRequestFeedEntry(
+				StringPool.BLANK, StringPool.BLANK);
 		}
 
-		// Body
+		StringBundler sb = new StringBundler(8);
 
-		String body = StringPool.BLANK;
+		sb.append("<a href=\"");
+		sb.append(themeDisplay.getPortalURL());
+		sb.append(themeDisplay.getPathFriendlyURLPublic());
+		sb.append(StringPool.SLASH);
 
-		return new SocialRequestFeedEntry(title, body);
+		User creatorUser = UserLocalServiceUtil.getUserById(
+			request.getUserId());
+
+		sb.append(creatorUser.getScreenName());
+
+		sb.append("/profile\">");
+		sb.append(getUserName(request.getUserId(), themeDisplay));
+		sb.append("</a>");
+
+		String creatorUserNameURL = sb.toString();
+
+		String title = themeDisplay.translate(
+			"request-social-networking-summary-add-connection",
+			new Object[] {creatorUserNameURL});
+
+		return new SocialRequestFeedEntry(title, StringPool.BLANK);
 	}
 
 	@Override
@@ -73,7 +84,12 @@ public class ContactsCenterRequestInterpreter
 		try {
 			SocialRelationLocalServiceUtil.addRelation(
 				request.getUserId(), request.getReceiverUserId(),
-				request.getType());
+				SocialRelationConstants.TYPE_BI_CONNECTION);
+
+			SocialActivityLocalServiceUtil.addActivity(
+				request.getUserId(), 0, User.class.getName(),
+				request.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION,
+				StringPool.BLANK, request.getReceiverUserId());
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -82,9 +98,8 @@ public class ContactsCenterRequestInterpreter
 		return true;
 	}
 
-	private static final String[] _CLASS_NAMES = new String[] {
-		User.class.getName()
-	};
+	private static final String[] _CLASS_NAMES =
+		new String[] {User.class.getName()};
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ContactsCenterRequestInterpreter.class);

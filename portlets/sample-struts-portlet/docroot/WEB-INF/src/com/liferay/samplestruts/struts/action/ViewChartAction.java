@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -67,7 +67,7 @@ public class ViewChartAction extends Action {
 			HttpSession session = request.getSession();
 
 			String chartName = (String)session.getAttribute(attrName);
-				//(String)_getAttribute(request, attrName);
+			//(String)_getAttribute(request, attrName);
 
 			// Chart
 
@@ -151,8 +151,8 @@ public class ViewChartAction extends Action {
 
 		String seriesName = "";
 
-		dataset.addValue(new Integer(9), seriesName, "Coke");
-		dataset.addValue(new Integer(21), seriesName, "Pepsi");
+		dataset.addValue(Integer.valueOf(9), seriesName, "Coke");
+		dataset.addValue(Integer.valueOf(21), seriesName, "Pepsi");
 
 		return dataset;
 	}

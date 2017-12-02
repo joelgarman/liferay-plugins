@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -25,7 +25,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 %>
 
-<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.UPDATE) %>">
+<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
 	<span class="action edit-entry">
 		<portlet:renderURL var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="mvcPath" value="/edit_entry.jsp" />
@@ -34,24 +34,19 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 		</portlet:renderURL>
 
 		<a href="<%= editURL %>">
-			<liferay-ui:icon
-				image="edit"
-				label="<%= true %>"
-			/>
+			<i class="icon-edit"></i>
+
+			<span><liferay-ui:message key="edit" /></span>
 		</a>
 	</span>
 </c:if>
 
-<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.DELETE) %>">
-	<span class="action delete-entry">
-		<liferay-portlet:actionURL name="deleteEntry" var="deleteURL">
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-		</liferay-portlet:actionURL>
+<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
+	<span class="action delete-entry" data-entryId="<%= String.valueOf(entry.getEntryId()) %>">
+		<a href="javascript:;">
+			<i class="icon-remove"></i>
 
-		<liferay-ui:icon-delete
-			label="<%= true %>"
-			url="<%= deleteURL %>"
-		/>
+			<span><liferay-ui:message key="delete" /></span>
+		</a>
 	</span>
 </c:if>

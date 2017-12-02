@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -31,8 +31,22 @@ if (distributionScopeArray.length == 2) {
 	classNameId = GetterUtil.getLong(distributionScopeArray[0]);
 	classPK = GetterUtil.getLong(distributionScopeArray[1]);
 }
+else {
+	if (!group.isUser()) {
+		classNameId = PortalUtil.getClassNameId(Group.class);
+		classPK = themeDisplay.getScopeGroupId();
+	}
+	else if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_GENERAL_ANNOUNCEMENTS)) {
+		classNameId = 0;
+		classPK = 0;
+	}
 
-if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
+	if ((classNameId >= 0) && (classPK >= 0)) {
+		distributionScope = classNameId + StringPool.COMMA + classPK;
+	}
+}
+
+if ((classNameId == 0) && (classPK == 0) && !PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_GENERAL_ANNOUNCEMENTS)) {
 	throw new PrincipalException();
 }
 
@@ -47,6 +61,8 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 	<liferay-ui:success key="announcementDeleted" message="the-announcement-was-successfully-deleted" />
 	<liferay-ui:success key="announcementUpdated" message="the-announcement-was-successfully-updated" />
 
+	<div id="<portlet:namespace />errorMessage"></div>
+
 	<aui:fieldset cssClass="distribution-scope-container">
 
 		<%
@@ -54,7 +70,6 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 		%>
 
 		<%@ include file="/entry_select_scope.jspf" %>
-
 	</aui:fieldset>
 
 	<aui:button onClick='<%= renderResponse.getNamespace() + "manageAddEntry();" %>' value="add-entry" />
@@ -80,11 +95,11 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, iteratorURL, headerNames, "no-entries-were-found");
 
-		int total = AnnouncementsEntryLocalServiceUtil.getEntriesCount(classNameId, classPK, portletName.equals(PortletKeys.ALERTS));
+		int total = AnnouncementsEntryLocalServiceUtil.getEntriesCount(classNameId, classPK, portletName.equals(alertsEntryPortletId));
 
 		searchContainer.setTotal(total);
 
-		List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries(classNameId, classPK, portletName.equals(PortletKeys.ALERTS), searchContainer.getStart(), searchContainer.getEnd());
+		List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries(classNameId, classPK, portletName.equals(alertsEntryPortletId), searchContainer.getStart(), searchContainer.getEnd());
 
 		searchContainer.setResults(results);
 
@@ -112,23 +127,28 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			User entryUser = UserLocalServiceUtil.fetchUserById(entry.getUserId());
 
-			row.addText(entryUser.getFullName());
+			if (entryUser == null) {
+				row.addText(HtmlUtil.escape(entry.getUserName()));
+			}
+			else {
+				row.addText(HtmlUtil.escape(entryUser.getFullName()));
+			}
 
 			// Type
 
-			row.addText(LanguageUtil.get(pageContext, entry.getType()));
+			row.addText(LanguageUtil.get(request, entry.getType()));
 
 			// Modified date
 
-			row.addText(dateFormatDate.format(entry.getModifiedDate()));
+			row.addDate(entry.getModifiedDate());
 
 			// Display date
 
-			row.addText(dateFormatDate.format(entry.getDisplayDate()));
+			row.addDate(entry.getDisplayDate());
 
 			// Expiration date
 
-			row.addText(dateFormatDate.format(entry.getExpirationDate()));
+			row.addDate(entry.getExpirationDate());
 
 			// Action
 
@@ -144,6 +164,51 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 	</c:if>
 </aui:form>
 
+<aui:script use="aui-base">
+	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
+
+	announcementEntries.delegate(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+				var deleteNode = event.currentTarget.ancestor('.delete-entry');
+
+				var entryId = deleteNode.attr('data-entryId');
+
+				var uri = '<liferay-portlet:actionURL name="deleteEntry"><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>';
+
+				uri = Liferay.Util.addParams('<portlet:namespace />entryId=' + entryId, uri)
+
+				A.io.request(
+					uri,
+					{
+						after: {
+							success: function(event, id, obj) {
+								var responseData = this.get('responseData');
+
+								if (!responseData.success) {
+									var message = A.one('#<portlet:namespace />errorMessage');
+
+									if (message) {
+										message.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+									}
+								}
+								else {
+									Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
+								}
+							}
+						},
+						dataType: 'JSON'
+					}
+				);
+			}
+		},
+		'.delete-entry a'
+	);
+</aui:script>
+
 <aui:script>
 	function <portlet:namespace />manageAddEntry() {
 		var A = AUI();
@@ -158,13 +223,14 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 		addEntryURL.setWindowState(LiferayWindowState.POP_UP);
 		%>
 
-		var addEntryURL = "<%= addEntryURL.toString() %>&distributionScope=" + optValue;
+		var addEntryURL = Liferay.Util.addParams('<portlet:namespace />distributionScope=' + optValue, '<%= addEntryURL.toString() %>');
 
 		window.location = addEntryURL;
 	}
 
 	function <portlet:namespace />selectDistributionScope(distributionScope) {
-		var url = "<%= portletURL.toString() %>&<portlet:namespace />distributionScope=" + distributionScope;
+		var url = Liferay.Util.addParams('<portlet:namespace />distributionScope=' + distributionScope, '<%= portletURL.toString() %>');
+
 		submitForm(document.<portlet:namespace />fm, url);
 	}
 </aui:script>

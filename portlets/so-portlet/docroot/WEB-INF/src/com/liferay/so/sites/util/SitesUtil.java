@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -19,11 +19,12 @@ package com.liferay.so.sites.util;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.util.comparator.GroupNameComparator;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.GroupConstants;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
+import com.liferay.portal.kernel.util.comparator.GroupNameComparator;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -43,7 +44,7 @@ public class SitesUtil {
 			FavoriteSiteLocalServiceUtil.getFavoriteSites(
 				userId, name, start, end);
 
-		List<Group> groups = new ArrayList<Group>(favoriteSites.size());
+		List<Group> groups = new ArrayList<>(favoriteSites.size());
 
 		for (Object[] favoriteSite : favoriteSites) {
 			long curUserId = (Long)favoriteSite[0];
@@ -78,7 +79,7 @@ public class SitesUtil {
 		catch (Exception e) {
 			_log.error(e, e);
 
-			return new ArrayList<Group>(0);
+			return new ArrayList<>(0);
 		}
 	}
 
@@ -101,9 +102,10 @@ public class SitesUtil {
 			int start, int end)
 		throws Exception {
 
+		keywords = CustomSQLUtil.keywords(keywords)[0];
+
 		if (usersSites) {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			params.put("active", Boolean.TRUE);
 			params.put("pageCount", Boolean.TRUE);
@@ -115,35 +117,34 @@ public class SitesUtil {
 
 			return groups;
 		}
-		else {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
 
-			params.put("active", Boolean.TRUE);
-			params.put("pageCount", Boolean.TRUE);
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
-			List<Integer> types = new ArrayList<Integer>();
+		params.put("active", Boolean.TRUE);
+		params.put("pageCount", Boolean.TRUE);
 
-			types.add(GroupConstants.TYPE_SITE_OPEN);
-			types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+		List<Integer> types = new ArrayList<>();
 
-			params.put("types", types);
+		types.add(GroupConstants.TYPE_SITE_OPEN);
+		types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
-			List<Group> groups = GroupLocalServiceUtil.search(
-				companyId, keywords, null, params, true, start, end,
-				new GroupNameComparator(true));
+		params.put("types", types);
 
-			return groups;
-		}
+		List<Group> groups = GroupLocalServiceUtil.search(
+			companyId, keywords, null, params, true, start, end,
+			new GroupNameComparator(true));
+
+		return groups;
 	}
 
 	protected static int doGetVisibleSitesCount(
 			long companyId, long userId, String keywords, boolean usersSites)
 		throws Exception {
 
+		keywords = CustomSQLUtil.keywords(keywords)[0];
+
 		if (usersSites) {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			params.put("active", Boolean.TRUE);
 			params.put("pageCount", Boolean.TRUE);
@@ -153,13 +154,12 @@ public class SitesUtil {
 				companyId, keywords, null, params, true);
 		}
 		else {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			params.put("active", Boolean.TRUE);
 			params.put("pageCount", Boolean.TRUE);
 
-			List<Integer> types = new ArrayList<Integer>();
+			List<Integer> types = new ArrayList<>();
 
 			types.add(GroupConstants.TYPE_SITE_OPEN);
 			types.add(GroupConstants.TYPE_SITE_RESTRICTED);

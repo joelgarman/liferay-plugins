@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -85,7 +85,13 @@
 <h3>Servlet Request</h3>
 
 <p>
-	<a href="<%= request.getContextPath() %>/servlet_request/remote_user.jsp">Remote User</a>
+	<a href="<%= PortalUtil.getPathContext(request) %>/servlet_request/remote_user.jsp">Remote User</a><br />
+</p>
+
+<h3>Servlet Session</h3>
+
+<p>
+	<a href="<%= PortalUtil.getPathContext(request) %>/servlet_session/access.jsp">Access</a>
 </p>
 
 <h3>Upload</h3>
@@ -98,7 +104,7 @@
 
 <%!
 private static String _assertEquals(Object expected, Object actual) {
-	return _assertTrue(Validator.equals(expected, actual));
+	return _assertTrue(Objects.equals(expected, actual));
 }
 
 private static String _assertTrue(boolean value) {
@@ -115,7 +121,7 @@ private static String _getPortletDescription(
 
 	Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
 
-	return PortalUtil.getPortletDescription(portlet, servletContext, Locale.US);
+	return PortalUtil.getPortletDescription(portlet, servletContext, LocaleUtil.US);
 }
 
 private static String _getPortletTitle(
@@ -123,7 +129,7 @@ private static String _getPortletTitle(
 
 	Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
 
-	return PortalUtil.getPortletTitle(portlet, servletContext, Locale.US);
+	return PortalUtil.getPortletTitle(portlet, servletContext, LocaleUtil.US);
 }
 
 private static final String _PORTLET_TITLE_DEFAULT = "Test Misc Localized Title";

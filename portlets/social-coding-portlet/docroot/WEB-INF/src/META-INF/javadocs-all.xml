@@ -300,7 +300,7 @@
 			<name>hasPermissions</name>
 			<param>
 				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -494,6 +494,23 @@
 		<method>
 			<name>JIRAIssueImpl</name>
 		</method>
+		<method>
+			<name>getKey</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<field>
+			<name>_key</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>JIRAProjectImpl</name>
+		<type>com.liferay.socialcoding.model.impl.JIRAProjectImpl</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>JIRAProjectImpl</name>
+		</method>
 	</javadoc>
 	<javadoc>
 		<name>SVNRepositoryImpl</name>
@@ -572,1038 +589,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>JIRAActionLocalServiceClpInvoker</name>
-		<type>com.liferay.socialcoding.service.base.JIRAActionLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>JIRAActionLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>JIRAChangeGroupLocalServiceClpInvoker</name>
-		<type>com.liferay.socialcoding.service.base.JIRAChangeGroupLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>JIRAChangeGroupLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>JIRAChangeItemLocalServiceClpInvoker</name>
-		<type>com.liferay.socialcoding.service.base.JIRAChangeItemLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>JIRAChangeItemLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>JIRAIssueLocalServiceClpInvoker</name>
-		<type>com.liferay.socialcoding.service.base.JIRAIssueLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>JIRAIssueLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-		<field>
-			<name>_methodName65</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes65</name>
-		</field>
-		<field>
-			<name>_methodName66</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes66</name>
-		</field>
-		<field>
-			<name>_methodName67</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes67</name>
-		</field>
-		<field>
-			<name>_methodName68</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes68</name>
-		</field>
-		<field>
-			<name>_methodName69</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes69</name>
-		</field>
-		<field>
-			<name>_methodName70</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes70</name>
-		</field>
-		<field>
-			<name>_methodName71</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes71</name>
-		</field>
-		<field>
-			<name>_methodName72</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes72</name>
-		</field>
-		<field>
-			<name>_methodName73</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes73</name>
-		</field>
-		<field>
-			<name>_methodName74</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes74</name>
-		</field>
-		<field>
-			<name>_methodName75</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes75</name>
-		</field>
-		<field>
-			<name>_methodName76</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes76</name>
-		</field>
-		<field>
-			<name>_methodName77</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes77</name>
-		</field>
-		<field>
-			<name>_methodName78</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes78</name>
-		</field>
-		<field>
-			<name>_methodName79</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes79</name>
-		</field>
-		<field>
-			<name>_methodName80</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes80</name>
-		</field>
-		<field>
-			<name>_methodName81</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes81</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>SVNRepositoryLocalServiceClpInvoker</name>
-		<type>com.liferay.socialcoding.service.base.SVNRepositoryLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>SVNRepositoryLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-		<field>
-			<name>_methodName65</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes65</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>SVNRevisionLocalServiceClpInvoker</name>
-		<type>com.liferay.socialcoding.service.base.SVNRevisionLocalServiceClpInvoker</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>SVNRevisionLocalServiceClpInvoker</name>
-		</method>
-		<method>
-			<name>invokeMethod</name>
-			<param>
-				<name>name</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>parameterTypes</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>arguments</name>
-				<type>java.lang.Object[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Throwable</name>
-				<type>java.lang.Throwable</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_methodName0</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes0</name>
-		</field>
-		<field>
-			<name>_methodName1</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes1</name>
-		</field>
-		<field>
-			<name>_methodName2</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes2</name>
-		</field>
-		<field>
-			<name>_methodName3</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes3</name>
-		</field>
-		<field>
-			<name>_methodName4</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes4</name>
-		</field>
-		<field>
-			<name>_methodName5</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes5</name>
-		</field>
-		<field>
-			<name>_methodName6</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes6</name>
-		</field>
-		<field>
-			<name>_methodName7</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes7</name>
-		</field>
-		<field>
-			<name>_methodName8</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes8</name>
-		</field>
-		<field>
-			<name>_methodName9</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes9</name>
-		</field>
-		<field>
-			<name>_methodName10</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes10</name>
-		</field>
-		<field>
-			<name>_methodName11</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes11</name>
-		</field>
-		<field>
-			<name>_methodName12</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes12</name>
-		</field>
-		<field>
-			<name>_methodName13</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes13</name>
-		</field>
-		<field>
-			<name>_methodName14</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes14</name>
-		</field>
-		<field>
-			<name>_methodName57</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes57</name>
-		</field>
-		<field>
-			<name>_methodName58</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes58</name>
-		</field>
-		<field>
-			<name>_methodName63</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes63</name>
-		</field>
-		<field>
-			<name>_methodName64</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes64</name>
-		</field>
-		<field>
-			<name>_methodName65</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes65</name>
-		</field>
-		<field>
-			<name>_methodName66</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes66</name>
-		</field>
-		<field>
-			<name>_methodName67</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes67</name>
-		</field>
-		<field>
-			<name>_methodName68</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes68</name>
-		</field>
-		<field>
-			<name>_methodName69</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes69</name>
-		</field>
-		<field>
-			<name>_methodName70</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes70</name>
-		</field>
-		<field>
-			<name>_methodName71</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes71</name>
-		</field>
-		<field>
-			<name>_methodName72</name>
-		</field>
-		<field>
-			<name>_methodParameterTypes72</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>JIRAActionLocalServiceImpl</name>
 		<type>com.liferay.socialcoding.service.impl.JIRAActionLocalServiceImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -1620,11 +605,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1648,11 +628,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -1674,11 +649,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getJIRAChangeItems</name>
@@ -1690,11 +660,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -1731,11 +696,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getAssigneeJIRAIssues</name>
@@ -1762,11 +722,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getAssigneeJIRAIssues</name>
@@ -1798,11 +753,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getAssigneeJIRAIssuesCount</name>
@@ -1824,11 +774,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getAssigneeJIRAIssuesCount</name>
@@ -1845,11 +790,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getAssigneeJIRAIssuesCount</name>
@@ -1871,11 +811,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getFirstAssigneeJIRAIssue</name>
@@ -1895,11 +830,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1923,11 +853,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getJIRAIssue</name>
@@ -1944,11 +869,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getJIRAIssue</name>
@@ -1963,11 +883,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -1991,11 +906,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getLastreporterJIRAIssue</name>
@@ -2017,11 +927,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getReporterJIRAIssues</name>
@@ -2053,11 +958,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getReporterJIRAIssues</name>
@@ -2084,11 +984,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getReporterJIRAIssues</name>
@@ -2120,11 +1015,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getReporterJIRAIssuesCount</name>
@@ -2146,11 +1036,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getReporterJIRAIssuesCount</name>
@@ -2167,11 +1052,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getReporterJIRAIssuesCount</name>
@@ -2193,11 +1073,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateJIRAIssues</name>
@@ -2211,11 +1086,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getLastModifiedDate</name>
@@ -2227,11 +1097,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getUserId</name>
@@ -2243,12 +1108,12 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
+	</javadoc>
+	<javadoc>
+		<name>JIRAProjectLocalServiceImpl</name>
+		<type>com.liferay.socialcoding.service.impl.JIRAProjectLocalServiceImpl</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
 	</javadoc>
 	<javadoc>
 		<name>SVNRepositoryLocalServiceImpl</name>
@@ -2269,11 +1134,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRepository</name>
@@ -2290,11 +1150,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>updateSVNRepository</name>
@@ -2306,11 +1161,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -2357,11 +1207,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getFirstSVNRevision</name>
@@ -2376,11 +1221,6 @@
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -2399,11 +1239,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRevision</name>
@@ -2420,11 +1255,6 @@
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRevisions</name>
@@ -2446,11 +1276,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRevisions</name>
@@ -2472,11 +1297,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRevisions</name>
@@ -2503,11 +1323,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRevisionsCount</name>
@@ -2519,11 +1334,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRevisionsCount</name>
@@ -2535,11 +1345,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>getSVNRevisionsCount</name>
@@ -2556,16 +1361,11 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 	</javadoc>
 	<javadoc>
 		<name>JIRAActionFinderImpl</name>
-		<type>com.liferay.socialcoding.service.persistence.JIRAActionFinderImpl</type>
+		<type>com.liferay.socialcoding.service.persistence.impl.JIRAActionFinderImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>countByCD_P</name>
@@ -2582,11 +1382,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByCD_P</name>
@@ -2603,11 +1398,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByCD_P</name>
@@ -2634,11 +1424,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
 			<name>COUNT_BY_CD_P</name>
@@ -2649,7 +1434,7 @@
 	</javadoc>
 	<javadoc>
 		<name>JIRAChangeGroupFinderImpl</name>
-		<type>com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinderImpl</type>
+		<type>com.liferay.socialcoding.service.persistence.impl.JIRAChangeGroupFinderImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>countByCD_P</name>
@@ -2666,11 +1451,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByCD_P</name>
@@ -2687,11 +1467,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByCD_P</name>
@@ -2718,11 +1493,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
 			<name>COUNT_BY_CD_P</name>
@@ -2733,7 +1503,7 @@
 	</javadoc>
 	<javadoc>
 		<name>JIRAIssueFinderImpl</name>
-		<type>com.liferay.socialcoding.service.persistence.JIRAIssueFinderImpl</type>
+		<type>com.liferay.socialcoding.service.persistence.impl.JIRAIssueFinderImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>countByCD_P</name>
@@ -2750,11 +1520,17 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+		</method>
+		<method>
+			<name>findByKey</name>
+			<param>
+				<name>jiraIssueKey</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
-			</throws>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>findByCD_P</name>
@@ -2771,11 +1547,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>findByCD_P</name>
@@ -2802,17 +1573,15 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<field>
 			<name>COUNT_BY_CD_P</name>
 		</field>
 		<field>
 			<name>FIND_BY_CD_P</name>
+		</field>
+		<field>
+			<name>FIND_BY_KEY</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -2987,7 +1756,7 @@
 			<name>hasPermissions</name>
 			<param>
 				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -3042,6 +1811,22 @@
 		</field>
 		<field>
 			<name>WEB_REVISION_NUMBER_URL</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.socialcoding.util.PortletPropsKeys</type>
+		<author><![CDATA[Rachael Koestartyo]]></author>
+		<field>
+			<name>JIRA_URL</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.socialcoding.util.PortletPropsValues</type>
+		<author><![CDATA[Rachael Koestartyo]]></author>
+		<field>
+			<name>JIRA_URL</name>
 		</field>
 	</javadoc>
 </javadocs>

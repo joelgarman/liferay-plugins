@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,8 @@
 
 package com.liferay.so.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -23,7 +25,7 @@ import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.so.service.SocialOfficeServiceUtil} service utility. The
+ * {@link SocialOfficeServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -47,9 +49,10 @@ import java.rmi.RemoteException;
  *
  * @author Brian Wing Shun Chan
  * @see SocialOfficeServiceHttp
- * @see com.liferay.so.service.SocialOfficeServiceUtil
+ * @see SocialOfficeServiceUtil
  * @generated
  */
+@ProviderType
 public class SocialOfficeServiceSoap {
 	public static long[] getUserSocialOfficeGroupIds()
 		throws RemoteException {

@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -16,7 +16,7 @@
 
 <%!
 private static boolean _isPendingApproval(WikiPage wikiPage) {
-	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL)) {
+	if ((wikiPage == null) || !Objects.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_PENDING_APPROVAL)) {
 		return false;
 	}
 
@@ -24,7 +24,7 @@ private static boolean _isPendingApproval(WikiPage wikiPage) {
 }
 
 private static boolean _isSpam(WikiPage wikiPage) {
-	if ((wikiPage == null) || !Validator.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM)) {
+	if ((wikiPage == null) || !Objects.equals(wikiPage.getSummary(), _AKISMET_CONSTANTS_WIKI_PAGE_MARKED_AS_SPAM)) {
 		return false;
 	}
 

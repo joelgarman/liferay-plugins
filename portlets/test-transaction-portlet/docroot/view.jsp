@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -15,8 +15,8 @@
 --%>
 
 <%@ page import="com.liferay.portal.kernel.exception.SystemException" %>
-<%@ page import="com.liferay.portal.service.PortalService" %>
-<%@ page import="com.liferay.portal.service.PortalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.service.PortalService" %>
+<%@ page import="com.liferay.portal.kernel.service.PortalServiceUtil" %>
 <%@ page import="com.liferay.testtransaction.model.Bar" %>
 <%@ page import="com.liferay.testtransaction.service.BarLocalServiceUtil" %>
 

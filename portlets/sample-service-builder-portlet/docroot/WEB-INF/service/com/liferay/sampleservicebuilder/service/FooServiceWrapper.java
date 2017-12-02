@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,7 +14,9 @@
 
 package com.liferay.sampleservicebuilder.service;
 
-import com.liferay.portal.service.ServiceWrapper;
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link FooService}.
@@ -23,30 +25,17 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see FooService
  * @generated
  */
+@ProviderType
 public class FooServiceWrapper implements FooService,
 	ServiceWrapper<FooService> {
 	public FooServiceWrapper(FooService fooService) {
 		_fooService = fooService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _fooService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_fooService.setBeanIdentifier(beanIdentifier);
+	public com.liferay.portal.kernel.model.User getUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooService.getUser(userId);
 	}
 
 	@Override
@@ -56,32 +45,25 @@ public class FooServiceWrapper implements FooService,
 		return _fooService.invokeMethod(name, parameterTypes, arguments);
 	}
 
-	@Override
-	public com.liferay.portal.model.User getUser(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _fooService.getUser(userId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.model.Group> getUserPlacesGroups()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _fooService.getUserPlacesGroups();
-	}
-
 	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	public FooService getWrappedFooService() {
-		return _fooService;
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _fooService.getOSGiServiceIdentifier();
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	public void setWrappedFooService(FooService fooService) {
-		_fooService = fooService;
+	@Override
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos() {
+		return _fooService.getFoos();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getUserSitesGroups()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooService.getUserSitesGroups();
 	}
 
 	@Override

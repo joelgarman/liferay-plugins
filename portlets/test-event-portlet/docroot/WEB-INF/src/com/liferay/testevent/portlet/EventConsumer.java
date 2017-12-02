@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,12 +14,11 @@
 
 package com.liferay.testevent.portlet;
 
-import com.liferay.portal.kernel.util.Validator;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import javax.portlet.Event;
 import javax.portlet.EventRequest;
@@ -64,7 +63,7 @@ public class EventConsumer extends GenericPortlet {
 
 		String value = hashMap.get("hello");
 
-		if (Validator.equals(value, "world")) {
+		if (Objects.equals(value, "world")) {
 			_result = true;
 		}
 		else {

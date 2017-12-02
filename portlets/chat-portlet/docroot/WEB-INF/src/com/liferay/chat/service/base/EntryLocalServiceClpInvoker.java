@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,6 +14,8 @@
 
 package com.liferay.chat.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.chat.service.EntryLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class EntryLocalServiceClpInvoker {
 	public EntryLocalServiceClpInvoker() {
 		_methodName0 = "addEntry";
@@ -84,53 +87,63 @@ public class EntryLocalServiceClpInvoker {
 
 		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getPersistedModel";
+		_methodName12 = "getActionableDynamicQuery";
 
-		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getEntries";
+		_methodName13 = "getIndexableActionableDynamicQuery";
 
-		_methodParameterTypes13 = new String[] { "int", "int" };
+		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "getEntriesCount";
+		_methodName15 = "deletePersistedModel";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes15 = new String[] {
+				"com.liferay.portal.kernel.model.PersistedModel"
+			};
 
-		_methodName15 = "updateEntry";
+		_methodName16 = "getPersistedModel";
 
-		_methodParameterTypes15 = new String[] { "com.liferay.chat.model.Entry" };
+		_methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-		_methodName40 = "getBeanIdentifier";
+		_methodName17 = "getEntries";
 
-		_methodParameterTypes40 = new String[] {  };
+		_methodParameterTypes17 = new String[] { "int", "int" };
 
-		_methodName41 = "setBeanIdentifier";
+		_methodName18 = "getEntriesCount";
 
-		_methodParameterTypes41 = new String[] { "java.lang.String" };
+		_methodParameterTypes18 = new String[] {  };
 
-		_methodName46 = "addEntry";
+		_methodName19 = "updateEntry";
 
-		_methodParameterTypes46 = new String[] {
+		_methodParameterTypes19 = new String[] { "com.liferay.chat.model.Entry" };
+
+		_methodName46 = "getOSGiServiceIdentifier";
+
+		_methodParameterTypes46 = new String[] {  };
+
+		_methodName51 = "addEntry";
+
+		_methodParameterTypes51 = new String[] {
 				"long", "long", "long", "java.lang.String"
 			};
 
-		_methodName47 = "addEntry";
+		_methodName52 = "addEntry";
 
-		_methodParameterTypes47 = new String[] {
+		_methodParameterTypes52 = new String[] {
 				"long", "long", "java.lang.String"
 			};
 
-		_methodName48 = "deleteEntries";
+		_methodName53 = "deleteEntries";
 
-		_methodParameterTypes48 = new String[] { "long" };
+		_methodParameterTypes53 = new String[] { "long" };
 
-		_methodName49 = "getNewEntries";
+		_methodName54 = "getNewEntries";
 
-		_methodParameterTypes49 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes54 = new String[] { "long", "long", "int", "int" };
 
-		_methodName50 = "getOldEntries";
+		_methodName55 = "getOldEntries";
 
-		_methodParameterTypes50 = new String[] { "long", "int", "int" };
+		_methodParameterTypes55 = new String[] { "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -177,7 +190,7 @@ public class EntryLocalServiceClpInvoker {
 			return EntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
+				(com.liferay.portal.kernel.util.OrderByComparator<?>)arguments[3]);
 		}
 
 		if (_methodName8.equals(name) &&
@@ -203,67 +216,75 @@ public class EntryLocalServiceClpInvoker {
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return EntryLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return EntryLocalServiceUtil.getActionableDynamicQuery();
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return EntryLocalServiceUtil.getEntries(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
-		}
-
-		if (_methodName14.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return EntryLocalServiceUtil.getEntriesCount();
+			return EntryLocalServiceUtil.getIndexableActionableDynamicQuery();
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return EntryLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
+		}
+
+		if (_methodName16.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
+			return EntryLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+		}
+
+		if (_methodName17.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
+			return EntryLocalServiceUtil.getEntries(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
+		}
+
+		if (_methodName18.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
+			return EntryLocalServiceUtil.getEntriesCount();
+		}
+
+		if (_methodName19.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
 			return EntryLocalServiceUtil.updateEntry((com.liferay.chat.model.Entry)arguments[0]);
-		}
-
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
-			return EntryLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
-			EntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
 		}
 
 		if (_methodName46.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+			return EntryLocalServiceUtil.getOSGiServiceIdentifier();
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return EntryLocalServiceUtil.addEntry(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(), (java.lang.String)arguments[3]);
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return EntryLocalServiceUtil.addEntry(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			EntryLocalServiceUtil.deleteEntries(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return EntryLocalServiceUtil.getNewEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return EntryLocalServiceUtil.getOldEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
@@ -300,22 +321,26 @@ public class EntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes12;
 	private String _methodName13;
 	private String[] _methodParameterTypes13;
-	private String _methodName14;
-	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName40;
-	private String[] _methodParameterTypes40;
-	private String _methodName41;
-	private String[] _methodParameterTypes41;
+	private String _methodName16;
+	private String[] _methodParameterTypes16;
+	private String _methodName17;
+	private String[] _methodParameterTypes17;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
 	private String _methodName46;
 	private String[] _methodParameterTypes46;
-	private String _methodName47;
-	private String[] _methodParameterTypes47;
-	private String _methodName48;
-	private String[] _methodParameterTypes48;
-	private String _methodName49;
-	private String[] _methodParameterTypes49;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
 }

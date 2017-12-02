@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -19,10 +19,10 @@ package com.liferay.so.hook.events;
 
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.User;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +38,12 @@ public class LoginPostAction extends Action {
 		throws ActionException {
 
 		try {
-			String memberRequestKey = ParamUtil.getString(request, "key");
+			String ppid = ParamUtil.getString(request, "p_p_id");
+
+			String portletNamespace = PortalUtil.getPortletNamespace(ppid);
+
+			String memberRequestKey = ParamUtil.getString(
+				request, portletNamespace + "key");
 
 			if (Validator.isNull(memberRequestKey)) {
 				return;

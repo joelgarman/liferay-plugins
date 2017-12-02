@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,26 +14,35 @@
 
 package com.liferay.akismet.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalService;
 import com.liferay.akismet.service.persistence.AkismetDataPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.kernel.bean.IdentifiableBean;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiService;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.service.BaseLocalServiceImpl;
+import com.liferay.portal.kernel.service.PersistedModelLocalServiceRegistryUtil;
+import com.liferay.portal.kernel.service.persistence.ClassNamePersistence;
+import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.model.PersistedModel;
-import com.liferay.portal.service.BaseLocalServiceImpl;
-import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
-import com.liferay.portal.service.persistence.UserPersistence;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.io.Serializable;
 
@@ -53,9 +62,10 @@ import javax.sql.DataSource;
  * @see com.liferay.akismet.service.AkismetDataLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class AkismetDataLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements AkismetDataLocalService,
-		IdentifiableBean {
+		IdentifiableOSGiService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -67,12 +77,10 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @param akismetData the akismet data
 	 * @return the akismet data that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public AkismetData addAkismetData(AkismetData akismetData)
-		throws SystemException {
+	public AkismetData addAkismetData(AkismetData akismetData) {
 		akismetData.setNew(true);
 
 		return akismetDataPersistence.update(akismetData);
@@ -95,12 +103,11 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param akismetDataId the primary key of the akismet data
 	 * @return the akismet data that was removed
 	 * @throws PortalException if a akismet data with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public AkismetData deleteAkismetData(long akismetDataId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return akismetDataPersistence.remove(akismetDataId);
 	}
 
@@ -109,12 +116,10 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @param akismetData the akismet data
 	 * @return the akismet data that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public AkismetData deleteAkismetData(AkismetData akismetData)
-		throws SystemException {
+	public AkismetData deleteAkismetData(AkismetData akismetData) {
 		return akismetDataPersistence.remove(akismetData);
 	}
 
@@ -131,12 +136,9 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return akismetDataPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -151,12 +153,10 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return akismetDataPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -173,47 +173,41 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return akismetDataPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return akismetDataPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return akismetDataPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public AkismetData fetchAkismetData(long akismetDataId)
-		throws SystemException {
+	public AkismetData fetchAkismetData(long akismetDataId) {
 		return akismetDataPersistence.fetchByPrimaryKey(akismetDataId);
 	}
 
@@ -223,17 +217,61 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param akismetDataId the primary key of the akismet data
 	 * @return the akismet data
 	 * @throws PortalException if a akismet data with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public AkismetData getAkismetData(long akismetDataId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return akismetDataPersistence.findByPrimaryKey(akismetDataId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(akismetDataLocalService);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+		actionableDynamicQuery.setModelClass(AkismetData.class);
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("akismetDataId");
+
+		return actionableDynamicQuery;
+	}
+
+	@Override
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(akismetDataLocalService);
+		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
+		indexableActionableDynamicQuery.setModelClass(AkismetData.class);
+
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
+			"akismetDataId");
+
+		return indexableActionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(akismetDataLocalService);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+		actionableDynamicQuery.setModelClass(AkismetData.class);
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("akismetDataId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return akismetDataLocalService.deleteAkismetData((AkismetData)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return akismetDataPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -247,11 +285,9 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param start the lower bound of the range of akismet datas
 	 * @param end the upper bound of the range of akismet datas (not inclusive)
 	 * @return the range of akismet datas
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<AkismetData> getAkismetDatas(int start, int end)
-		throws SystemException {
+	public List<AkismetData> getAkismetDatas(int start, int end) {
 		return akismetDataPersistence.findAll(start, end);
 	}
 
@@ -259,10 +295,9 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * Returns the number of akismet datas.
 	 *
 	 * @return the number of akismet datas
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getAkismetDatasCount() throws SystemException {
+	public int getAkismetDatasCount() {
 		return akismetDataPersistence.countAll();
 	}
 
@@ -271,12 +306,10 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @param akismetData the akismet data
 	 * @return the akismet data that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public AkismetData updateAkismetData(AkismetData akismetData)
-		throws SystemException {
+	public AkismetData updateAkismetData(AkismetData akismetData) {
 		return akismetDataPersistence.update(akismetData);
 	}
 
@@ -285,7 +318,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @return the akismet data local service
 	 */
-	public com.liferay.akismet.service.AkismetDataLocalService getAkismetDataLocalService() {
+	public AkismetDataLocalService getAkismetDataLocalService() {
 		return akismetDataLocalService;
 	}
 
@@ -295,7 +328,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param akismetDataLocalService the akismet data local service
 	 */
 	public void setAkismetDataLocalService(
-		com.liferay.akismet.service.AkismetDataLocalService akismetDataLocalService) {
+		AkismetDataLocalService akismetDataLocalService) {
 		this.akismetDataLocalService = akismetDataLocalService;
 	}
 
@@ -323,7 +356,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
 		return counterLocalService;
 	}
 
@@ -333,8 +366,46 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
+	}
+
+	/**
+	 * Returns the class name local service.
+	 *
+	 * @return the class name local service
+	 */
+	public com.liferay.portal.kernel.service.ClassNameLocalService getClassNameLocalService() {
+		return classNameLocalService;
+	}
+
+	/**
+	 * Sets the class name local service.
+	 *
+	 * @param classNameLocalService the class name local service
+	 */
+	public void setClassNameLocalService(
+		com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+		this.classNameLocalService = classNameLocalService;
+	}
+
+	/**
+	 * Returns the class name persistence.
+	 *
+	 * @return the class name persistence
+	 */
+	public ClassNamePersistence getClassNamePersistence() {
+		return classNamePersistence;
+	}
+
+	/**
+	 * Sets the class name persistence.
+	 *
+	 * @param classNamePersistence the class name persistence
+	 */
+	public void setClassNamePersistence(
+		ClassNamePersistence classNamePersistence) {
+		this.classNamePersistence = classNamePersistence;
 	}
 
 	/**
@@ -342,7 +413,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.kernel.service.ResourceLocalService getResourceLocalService() {
 		return resourceLocalService;
 	}
 
@@ -352,7 +423,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
+		com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -361,7 +432,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
 		return userLocalService;
 	}
 
@@ -371,27 +442,8 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	 * @param userLocalService the user local service
 	 */
 	public void setUserLocalService(
-		com.liferay.portal.service.UserLocalService userLocalService) {
+		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
-	}
-
-	/**
-	 * Returns the user remote service.
-	 *
-	 * @return the user remote service
-	 */
-	public com.liferay.portal.service.UserService getUserService() {
-		return userService;
-	}
-
-	/**
-	 * Sets the user remote service.
-	 *
-	 * @param userService the user remote service
-	 */
-	public void setUserService(
-		com.liferay.portal.service.UserService userService) {
-		this.userService = userService;
 	}
 
 	/**
@@ -427,23 +479,13 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the Spring bean ID for this bean.
+	 * Returns the OSGi service identifier.
 	 *
-	 * @return the Spring bean ID for this bean
+	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getBeanIdentifier() {
-		return _beanIdentifier;
-	}
-
-	/**
-	 * Sets the Spring bean ID for this bean.
-	 *
-	 * @param beanIdentifier the Spring bean ID for this bean
-	 */
-	@Override
-	public void setBeanIdentifier(String beanIdentifier) {
-		_beanIdentifier = beanIdentifier;
+	public String getOSGiServiceIdentifier() {
+		return AkismetDataLocalService.class.getName();
 	}
 
 	@Override
@@ -476,16 +518,21 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	}
 
 	/**
-	 * Performs an SQL query.
+	 * Performs a SQL query.
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = akismetDataPersistence.getDataSource();
 
+			DB db = DBManagerUtil.getDB();
+
+			sql = db.buildSQL(sql);
+			sql = PortalUtil.transformSQL(sql);
+
 			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql, new int[0]);
+					sql);
 
 			sqlUpdate.update();
 		}
@@ -495,20 +542,21 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.akismet.service.AkismetDataLocalService.class)
-	protected com.liferay.akismet.service.AkismetDataLocalService akismetDataLocalService;
+	protected AkismetDataLocalService akismetDataLocalService;
 	@BeanReference(type = AkismetDataPersistence.class)
 	protected AkismetDataPersistence akismetDataPersistence;
-	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
-	protected com.liferay.counter.service.CounterLocalService counterLocalService;
-	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
-	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
-	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
-	protected com.liferay.portal.service.UserLocalService userLocalService;
-	@BeanReference(type = com.liferay.portal.service.UserService.class)
-	protected com.liferay.portal.service.UserService userService;
+	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
+	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
+	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
+	@BeanReference(type = ClassNamePersistence.class)
+	protected ClassNamePersistence classNamePersistence;
+	@BeanReference(type = com.liferay.portal.kernel.service.ResourceLocalService.class)
+	protected com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService;
+	@BeanReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
+	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private String _beanIdentifier;
 	private ClassLoader _classLoader;
 	private AkismetDataLocalServiceClpInvoker _clpInvoker = new AkismetDataLocalServiceClpInvoker();
 }

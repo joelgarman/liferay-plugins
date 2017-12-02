@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -18,14 +18,14 @@
 package com.liferay.so.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.Account;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.GroupConstants;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Account;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.model.User;
 import com.liferay.so.model.FavoriteSite;
 import com.liferay.so.service.base.FavoriteSiteLocalServiceBaseImpl;
 
@@ -38,7 +38,7 @@ public class FavoriteSiteLocalServiceImpl
 	extends FavoriteSiteLocalServiceBaseImpl {
 
 	public FavoriteSite addFavoriteSite(long userId, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(groupId);
 
@@ -60,26 +60,25 @@ public class FavoriteSiteLocalServiceImpl
 
 	@Override
 	public FavoriteSite deleteFavoriteSite(long favoriteSiteId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return favoriteSitePersistence.remove(favoriteSiteId);
 	}
 
 	public void deleteFavoriteSites(long userId, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		favoriteSitePersistence.removeByG_U(groupId, userId);
 	}
 
-	public List<FavoriteSite> getFavoriteSites(long userId, int start, int end)
-		throws SystemException {
+	public List<FavoriteSite> getFavoriteSites(
+		long userId, int start, int end) {
 
 		return favoriteSitePersistence.findByUserId(userId, start, end);
 	}
 
 	public List<Object[]> getFavoriteSites(
-			long userId, String name, int start, int end)
-		throws SystemException {
+		long userId, String name, int start, int end) {
 
 		User user = userLocalService.fetchUser(userId);
 
@@ -89,13 +88,11 @@ public class FavoriteSiteLocalServiceImpl
 			userId, name, groupRealName, start, end);
 	}
 
-	public int getFavoriteSitesCount(long userId) throws SystemException {
+	public int getFavoriteSitesCount(long userId) {
 		return favoriteSitePersistence.countByUserId(userId);
 	}
 
-	public int getFavoriteSitesCount(long userId, String name)
-		throws SystemException {
-
+	public int getFavoriteSitesCount(long userId, String name) {
 		User user = userLocalService.fetchUser(userId);
 
 		String groupRealName = getGroupRealName(user.getCompanyId(), name);
@@ -103,7 +100,7 @@ public class FavoriteSiteLocalServiceImpl
 		return favoriteSiteFinder.countByU_N(userId, name, groupRealName);
 	}
 
-	public boolean isFavoriteSite(long favoriteSiteId) throws SystemException {
+	public boolean isFavoriteSite(long favoriteSiteId) {
 		FavoriteSite favoriteSite = favoriteSitePersistence.fetchByPrimaryKey(
 			favoriteSiteId);
 
@@ -114,9 +111,7 @@ public class FavoriteSiteLocalServiceImpl
 		return false;
 	}
 
-	public boolean isFavoriteSite(long userId, long groupId)
-		throws SystemException {
-
+	public boolean isFavoriteSite(long userId, long groupId) {
 		int count = favoriteSitePersistence.countByG_U(groupId, userId);
 
 		if (count > 0) {
@@ -126,9 +121,7 @@ public class FavoriteSiteLocalServiceImpl
 		return false;
 	}
 
-	protected String getGroupRealName(long companyId, String name)
-		throws SystemException {
-
+	protected String getGroupRealName(long companyId, String name) {
 		if (Validator.isNull(name)) {
 			return name;
 		}
@@ -142,8 +135,7 @@ public class FavoriteSiteLocalServiceImpl
 
 			String companyName = account.getName();
 
-			name = StringUtil.replace(
-				name, StringPool.PERCENT, StringPool.BLANK);
+			name = StringUtil.replace(name, CharPool.PERCENT, StringPool.BLANK);
 
 			if (companyName.indexOf(name) != -1) {
 				groupRealName = StringUtil.quote(
@@ -156,9 +148,7 @@ public class FavoriteSiteLocalServiceImpl
 		return groupRealName;
 	}
 
-	protected void validate(long groupId)
-		throws PortalException, SystemException {
-
+	protected void validate(long groupId) throws PortalException {
 		groupPersistence.findByPrimaryKey(groupId);
 	}
 

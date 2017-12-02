@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,7 +14,9 @@
 
 package com.liferay.so.service;
 
-import com.liferay.portal.service.ServiceWrapper;
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link SocialOfficeService}.
@@ -23,30 +25,17 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see SocialOfficeService
  * @generated
  */
+@ProviderType
 public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	ServiceWrapper<SocialOfficeService> {
 	public SocialOfficeServiceWrapper(SocialOfficeService socialOfficeService) {
 		_socialOfficeService = socialOfficeService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _socialOfficeService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_socialOfficeService.setBeanIdentifier(beanIdentifier);
+	public boolean isSocialOfficeGroup(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _socialOfficeService.isSocialOfficeGroup(groupId);
 	}
 
 	@Override
@@ -56,33 +45,20 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 		return _socialOfficeService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _socialOfficeService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public long[] getUserSocialOfficeGroupIds()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _socialOfficeService.getUserSocialOfficeGroupIds();
-	}
-
-	@Override
-	public boolean isSocialOfficeGroup(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _socialOfficeService.isSocialOfficeGroup(groupId);
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	public SocialOfficeService getWrappedSocialOfficeService() {
-		return _socialOfficeService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	public void setWrappedSocialOfficeService(
-		SocialOfficeService socialOfficeService) {
-		_socialOfficeService = socialOfficeService;
 	}
 
 	@Override

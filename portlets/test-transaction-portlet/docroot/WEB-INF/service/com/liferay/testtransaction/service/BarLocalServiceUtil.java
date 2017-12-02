@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,9 +14,11 @@
 
 package com.liferay.testtransaction.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
-import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * Provides the local service utility for Bar. This utility wraps
@@ -32,24 +34,62 @@ import com.liferay.portal.service.InvokableLocalService;
  * @see com.liferay.testtransaction.service.impl.BarLocalServiceImpl
  * @generated
  */
+@ProviderType
 public class BarLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.testtransaction.service.impl.BarLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static boolean hasBar(java.lang.String text) {
+		return getService().hasBar(text);
+	}
+
+	public static boolean hasClassName() {
+		return getService().hasClassName();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
 
 	/**
 	* Adds the bar to the database. Also notifies the appropriate model listeners.
 	*
 	* @param bar the bar
 	* @return the bar that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testtransaction.model.Bar addBar(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testtransaction.model.Bar bar) {
 		return getService().addBar(bar);
+	}
+
+	public static com.liferay.testtransaction.model.Bar addBar_Success(
+		java.lang.String text) {
+		return getService().addBar_Success(text);
 	}
 
 	/**
@@ -63,34 +103,83 @@ public class BarLocalServiceUtil {
 	}
 
 	/**
+	* Deletes the bar from the database. Also notifies the appropriate model listeners.
+	*
+	* @param bar the bar
+	* @return the bar that was removed
+	*/
+	public static com.liferay.testtransaction.model.Bar deleteBar(
+		com.liferay.testtransaction.model.Bar bar) {
+		return getService().deleteBar(bar);
+	}
+
+	/**
 	* Deletes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param barId the primary key of the bar
 	* @return the bar that was removed
 	* @throws PortalException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testtransaction.model.Bar deleteBar(long barId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteBar(barId);
 	}
 
-	/**
-	* Deletes the bar from the database. Also notifies the appropriate model listeners.
-	*
-	* @param bar the bar
-	* @return the bar that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testtransaction.model.Bar deleteBar(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteBar(bar);
+	public static com.liferay.testtransaction.model.Bar fetchBar(long barId) {
+		return getService().fetchBar(barId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.testtransaction.model.Bar getBar(
+		java.lang.String text)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getBar(text);
+	}
+
+	/**
+	* Returns the bar with the primary key.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar
+	* @throws PortalException if a bar with the primary key could not be found
+	*/
+	public static com.liferay.testtransaction.model.Bar getBar(long barId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getBar(barId);
+	}
+
+	/**
+	* Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param bar the bar
+	* @return the bar that was updated
+	*/
+	public static com.liferay.testtransaction.model.Bar updateBar(
+		com.liferay.testtransaction.model.Bar bar) {
+		return getService().updateBar(bar);
+	}
+
+	/**
+	* Returns the number of bars.
+	*
+	* @return the number of bars
+	*/
+	public static int getBarsCount() {
+		return getService().getBarsCount();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -98,12 +187,9 @@ public class BarLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static <T> java.util.List<T> dynamicQuery(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -118,12 +204,10 @@ public class BarLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -139,70 +223,13 @@ public class BarLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
-	public static java.util.List dynamicQuery(
+	public static <T> java.util.List<T> dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the number of rows that match the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().dynamicQueryCount(dynamicQuery);
-	}
-
-	/**
-	* Returns the number of rows that match the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static com.liferay.testtransaction.model.Bar fetchBar(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchBar(barId);
-	}
-
-	/**
-	* Returns the bar with the primary key.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar
-	* @throws PortalException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.testtransaction.model.Bar getBar(long barId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBar(barId);
-	}
-
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -215,109 +242,55 @@ public class BarLocalServiceUtil {
 	* @param start the lower bound of the range of bars
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of bars
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.testtransaction.model.Bar> getBars(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getBars(start, end);
 	}
 
 	/**
-	* Returns the number of bars.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of bars
-	* @throws SystemException if a system exception occurred
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	public static int getBarsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBarsCount();
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
 	/**
-	* Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @param bar the bar
-	* @return the bar that was updated
-	* @throws SystemException if a system exception occurred
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
 	*/
-	public static com.liferay.testtransaction.model.Bar updateBar(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateBar(bar);
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
+		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static void addBar_Rollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().addBar_Rollback(text);
-	}
-
-	public static com.liferay.testtransaction.model.Bar addBar_Success(
-		java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().addBar_Success(text);
-	}
-
-	public static void addBarAndClassName_PortalRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void addBarAndClassName_PortalRollback(java.lang.String text) {
 		getService().addBarAndClassName_PortalRollback(text);
 	}
 
-	public static void addBarAndClassName_PortletRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void addBarAndClassName_PortletRollback(java.lang.String text) {
 		getService().addBarAndClassName_PortletRollback(text);
+	}
+
+	public static void addBar_Rollback(java.lang.String text) {
+		getService().addBar_Rollback(text);
 	}
 
 	public static void deleteBarAndClassName(
 		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteBarAndClassName(bar);
 	}
 
-	public static com.liferay.testtransaction.model.Bar getBar(
-		java.lang.String text)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBar(text);
-	}
-
-	public static boolean hasBar(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().hasBar(text);
-	}
-
-	public static boolean hasClassName()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().hasClassName();
-	}
-
-	public static void testAddClassNameAndBar_Success(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void testAddClassNameAndBar_Success(java.lang.String text) {
 		getService().testAddClassNameAndBar_Success(text);
 	}
 
@@ -342,12 +315,6 @@ public class BarLocalServiceUtil {
 		}
 
 		return _service;
-	}
-
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	public void setService(BarLocalService service) {
 	}
 
 	private static BarLocalService _service;

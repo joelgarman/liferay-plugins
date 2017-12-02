@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -26,12 +26,10 @@ String[] category3 = {"section5"};
 String[][] categorySections = {category1, category2, category3};
 %>
 
-<aui:layout>
-	<aui:form action="" name="fm">
-		<liferay-ui:form-navigator
-			categoryNames="<%= categoryNames %>"
-			categorySections="<%= categorySections %>"
-			jspPath="/sections/"
-		/>
-	</aui:form>
-</aui:layout>
+<aui:form action="" name="fm">
+	<liferay-ui:form-navigator
+		categoryNames="<%= categoryNames %>"
+		categorySections="<%= categorySections %>"
+		jspPath="/sections/"
+	/>
+</aui:form>

@@ -4,22 +4,22 @@
 		{
 			"columns": [
 				[
-					"Home Banner.html"
+					"Home Banner.xml"
 				],
 				[
-					"Welcome to Our Clinics.html"
+					"Welcome to Our Clinics.xml"
 				],
 				[
-					"Our Mission.html"
+					"Our Mission.xml"
 				],
 				[
-					"Our Team.html"
+					"Our Team.xml"
 				],
 				[
-					"Our Promise.html"
+					"Our Promise.xml"
 				],
 				[
-					"Recent News.html"
+					"Recent News.xml"
 				]
 			],
 			"friendlyURL": "/home",
@@ -30,7 +30,7 @@
 		{
 			"columns": [
 				[
-					"The 7 Cogs Promise.html"
+					"The Zoe Promise.xml"
 				],
 				[
 					{
@@ -41,10 +41,10 @@
 					}
 				],
 				[
-					"Make an Appointment.html"
+					"Make an Appointment.xml"
 				],
 				[
-					"Make an Appointment Left Image.html"
+					"Make an Appointment Left Image.xml"
 				],
 				[
 					{
@@ -53,11 +53,11 @@
 							"description" : "Lorem ipsum dolor sit amet, lohtil consectetur adipiscing elit. Vivamus feugiat, augue in sollicitudin blandit, magna purus bibendum justo, quisnic scelerisque ipsum turpis eu dui. Nunc lobortis, augue ac viverra convallis.",
 							"fieldLabel1": "Full Name",
 							"fieldLabel2": "Email",
-							"fieldsEditingDisabled": "true",
 							"fieldType1": "text",
 							"fieldType2": "text",
 							"fieldType3": "textarea",
 							"fieldValue": "Write your short description here",
+							"fieldsEditingDisabled": "true",
 							"portletSetupCss": {
 								"advancedData": {
 									"customCSSClassName": "make-appointment"
@@ -69,19 +69,20 @@
 					}
 				],
 				[
-					"Section 1.html"
+					"Section 1.xml"
 				],
 				[
-					"Section 2.html"
+					"Section 2.xml"
 				],
 				[
-					"Section 3.html"
+					"Section 3.xml"
 				],
 				[
-					"Section 4.html"
+					"Section 4.xml"
 				]
 			],
 			"friendlyURL": "/about",
+			"layoutTemplateId": "2-1-2-4-columns",
 			"layouts": [
 				{
 					"friendlyURL": "/category-1",
@@ -104,7 +105,6 @@
 					"title": "Category 4"
 				}
 			],
-			"layoutTemplateId": "2-1-2-4-columns",
 			"name": "About",
 			"title": "About"
 		},

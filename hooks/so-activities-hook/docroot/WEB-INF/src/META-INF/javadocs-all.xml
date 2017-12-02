@@ -35,6 +35,27 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>BlogsEntryModelListener</name>
+		<type>com.liferay.so.activities.hook.listeners.BlogsEntryModelListener</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>onAfterUpdate</name>
+			<param>
+				<name>blogsEntry</name>
+				<type>com.liferay.portlet.blogs.model.BlogsEntry</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>ModelListenerException</name>
+				<type>com.liferay.portal.ModelListenerException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_BLOGS_ENTRY_CLASS_NAME_ID</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>BlogsActivityInterpreter</name>
 		<type>com.liferay.so.activities.hook.social.BlogsActivityInterpreter</type>
 		<author><![CDATA[Evan Thibodeau]]></author>
@@ -44,6 +65,19 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>updateActivitySet</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>getActivitySetId</name>
@@ -78,7 +112,54 @@
 			</throws>
 		</method>
 		<method>
-			<name>getLink</name>
+			<name>getBody</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getSubfeedEntry</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
@@ -114,18 +195,38 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_COMMENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_COMMENT}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.blogs.social.BlogsActivityKeys#UPDATE_ENTRY}]]></comment>
-		</field>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>isVisible</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -174,7 +275,80 @@
 			</throws>
 		</method>
 		<method>
-			<name>getLink</name>
+			<name>getBody</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBookmarkLink</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getSubfeedEntry</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
@@ -211,6 +385,22 @@
 			</return>
 		</method>
 		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>ping</name>
 			<param>
 				<name>urlString</name>
@@ -221,14 +411,6 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#ADD_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#UPDATE_ENTRY}]]></comment>
-		</field>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -277,10 +459,62 @@
 			</throws>
 		</method>
 		<method>
-			<name>getLink</name>
+			<name>getBody</name>
 			<param>
-				<name>activity</name>
-				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLinkURL</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -313,14 +547,53 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_EVENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.calendar.social.CalendarActivityKeys#ADD_EVENT}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_EVENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.calendar.social.CalendarActivityKeys#UPDATE_EVENT}]]></comment>
-		</field>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>hasPermissions</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -369,6 +642,74 @@
 			</throws>
 		</method>
 		<method>
+			<name>getBody</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getFolderLink</name>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getLink</name>
 			<param>
 				<name>activity</name>
@@ -426,6 +767,42 @@
 			</throws>
 		</method>
 		<method>
+			<name>getTitleArguments</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>link</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getTitlePattern</name>
 			<param>
 				<name>groupName</name>
@@ -446,14 +823,43 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_FILE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.documentlibrary.social.DLActivityKeys#ADD_FILE_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_FILE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.documentlibrary.social.DLActivityKeys#UPDATE_FILE_ENTRY}]]></comment>
-		</field>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>wrapLinkWithIcon</name>
+			<param>
+				<name>link</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>text</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -468,6 +874,19 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>updateActivitySet</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>getActivitySetId</name>
@@ -502,10 +921,36 @@
 			</throws>
 		</method>
 		<method>
-			<name>getLink</name>
+			<name>getBody</name>
 			<param>
-				<name>activity</name>
-				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -559,6 +1004,42 @@
 			</throws>
 		</method>
 		<method>
+			<name>getTitleArguments</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>link</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getTitlePattern</name>
 			<param>
 				<name>groupName</name>
@@ -579,14 +1060,299 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
-			<name>_ACTIVITY_KEY_ADD_MESSAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.messageboards.social.MBActivityKeys#ADD_MESSAGE}]]></comment>
+			<name>_CLASS_NAMES</name>
 		</field>
-		<field>
-			<name>_ACTIVITY_KEY_REPLY_MESSAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.messageboards.social.MBActivityKeys#REPLY_MESSAGE}]]></comment>
-		</field>
+	</javadoc>
+	<javadoc>
+		<name>MicroblogsActivityInterpreter</name>
+		<type>com.liferay.so.activities.hook.social.MicroblogsActivityInterpreter</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>updateActivitySet</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getActivitySetId</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>receiverMicroblogsEntryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>type</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitle</name>
+			<param>
+				<name>activitySetId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>displayDate</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activityType</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitle</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitle</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>hasPermissions</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -604,7 +1370,102 @@
 			</return>
 		</method>
 		<method>
+			<name>doInterpret</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doInterpret</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getActivitySetUserIds</name>
+			<param>
+				<name>activitySetId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getAssetRenderer</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getDisplayDate</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
@@ -636,7 +1497,80 @@
 			</return>
 		</method>
 		<method>
+			<name>getLink</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getLinkURL</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getPageTitle</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getSubfeedEntry</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
@@ -657,31 +1591,67 @@
 			</throws>
 		</method>
 		<method>
-			<name>getRelativeTimeDescription</name>
+			<name>getTitle</name>
 			<param>
-				<name>milliseconds</name>
+				<name>activitySetId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>locale</name>
-				<type>java.util.Locale</type>
+				<name>groupId</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>timeZone</name>
-				<type>java.util.TimeZone</type>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>displayDate</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>getTitle</name>
 			<param>
 				<name>activity</name>
 				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitle</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -735,10 +1705,88 @@
 			</throws>
 		</method>
 		<method>
+			<name>getTitleArguments</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>link</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getViewableActivities</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>hasPermissions</name>
 			<param>
 				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -766,15 +1814,78 @@
 			</throws>
 		</method>
 		<method>
+			<name>hasPermissions</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>hasPermissions</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>isExpired</name>
 			<param>
 				<name>activitySet</name>
 				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>comment</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>isVisible</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>wrapLink</name>
@@ -802,9 +1913,8 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>WikiActivityInterpreter</name>
-		<type>com.liferay.so.activities.hook.social.WikiActivityInterpreter</type>
-		<author><![CDATA[Jonathan Lee]]></author>
+		<name>TasksActivityInterpreter</name>
+		<type>com.liferay.so.activities.hook.social.TasksActivityInterpreter</type>
 		<author><![CDATA[Matthew Kong]]></author>
 		<method>
 			<name>getClassNames</name>
@@ -845,10 +1955,36 @@
 			</throws>
 		</method>
 		<method>
-			<name>getLink</name>
+			<name>getBody</name>
 			<param>
-				<name>activity</name>
-				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -916,6 +2052,48 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+		</method>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>hasPermissions</name>
+			<param>
+				<name>permissionChecker</name>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
@@ -923,19 +2101,575 @@
 			</throws>
 		</method>
 		<field>
-			<name>_ACTIVITY_KEY_ADD_COMMENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.wiki.social.WikiActivityKeys#ADD_COMMENT}]]></comment>
+			<name>_CLASS_NAMES</name>
 		</field>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_PAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.wiki.social.WikiActivityKeys#ADD_PAGE}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_PAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.wiki.social.WikiActivityKeys#UPDATE_PAGE}]]></comment>
-		</field>
+	</javadoc>
+	<javadoc>
+		<name>WikiActivityInterpreter</name>
+		<type>com.liferay.so.activities.hook.social.WikiActivityInterpreter</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>updateActivitySet</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>appendNodeTitlePattern</name>
+			<param>
+				<name>titlePattern</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getActivitySetId</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getDiffsURL</name>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sourceVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>targetVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>sourceVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>targetVersion</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getNodeTitle</name>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitleArguments</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>link</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitleArguments</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>link</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activity</name>
+				<type>com.liferay.portlet.social.model.SocialActivity</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getTitlePattern</name>
+			<param>
+				<name>groupName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySet</name>
+				<type>com.liferay.portlet.social.model.SocialActivitySet</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_1_0_0</name>
+		<type>com.liferay.so.activities.hook.upgrade.UpgradeProcess_1_0_0</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_1_0_1</name>
+		<type>com.liferay.so.activities.hook.upgrade.UpgradeProcess_1_0_1</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeSocial</name>
+		<type>com.liferay.so.activities.hook.upgrade.v1_0_0.UpgradeSocial</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>addActivitySet</name>
+			<param>
+				<name>activitySetId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>type_</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>hasActivitySets</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>migrateActivities</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateActivity</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySetId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeSocial</name>
+		<type>com.liferay.so.activities.hook.upgrade.v1_0_1.UpgradeSocial</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateSOSocialActivities</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.so.activities.util.PortletPropsKeys</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<field>
+			<name>SOCIAL_ACTIVITY_INTERPRETER</name>
+		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS</name>
+		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW</name>
+		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_SETS_COMMENTS_BUNDLING_TIME_WINDOW</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.so.activities.util.PortletPropsValues</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<field>
+			<name>SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS</name>
+		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW</name>
+		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_SETS_COMMENTS_BUNDLING_TIME_WINDOW</name>
 		</field>
 	</javadoc>
 </javadocs>

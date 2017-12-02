@@ -24,33 +24,16 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_countDownLatch</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>TestSchedulerMessageListener</name>
-		<type>com.liferay.testmisc.messaging.TestSchedulerMessageListener</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
-			<name>isReceived</name>
-		</method>
-		<method>
-			<name>doReceive</name>
-			<param>
-				<name>message</name>
-				<type>com.liferay.portal.kernel.messaging.Message</type>
-			</param>
+			<name>_countDown</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
-			<name>_log</name>
-		</field>
-		<field>
-			<name>_received</name>
+			<name>_countDownLatch</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -76,6 +59,14 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>_countDown</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_countDownLatch</name>
 		</field>
@@ -85,6 +76,19 @@
 		<type>com.liferay.testmisc.portlet.TestPortlet</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<author><![CDATA[Amos Fong]]></author>
+		<method>
+			<name>addPortalMessage</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
 		<method>
 			<name>doDispatch</name>
 			<param>
@@ -232,6 +236,35 @@
 			</throws>
 		</method>
 		<method>
+			<name>testMultipartWithCommonsFileUpload</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>testMultipartWithPortletInputStream</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>testResponseBufferSize</name>
 			<param>
 				<name>renderResponse</name>
@@ -344,35 +377,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>TestSchedulerBean</name>
-		<type>com.liferay.testmisc.scheduler.TestSchedulerBean</type>
-		<author><![CDATA[Shuyang Zhou]]></author>
-		<method>
-			<name>afterPropertiesSet</name>
-		</method>
-		<field>
-			<name>_log</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>TestSchedulerUtil</name>
-		<type>com.liferay.testmisc.scheduler.TestSchedulerUtil</type>
-		<author><![CDATA[Shuyang Zhou]]></author>
-		<method>
-			<name>isReceivedBeforeSpringInitialzed</name>
-		</method>
-		<method>
-			<name>setReceivedBeforeSpringInitialzed</name>
-			<param>
-				<name>receivedBeforeSpringInitialzed</name>
-				<type>boolean</type>
-			</param>
-		</method>
-		<field>
-			<name>_receivedBeforeSpringInitialzed</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>TestPortletSessionListener</name>
 		<type>com.liferay.testmisc.servlet.TestPortletSessionListener</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -405,12 +409,20 @@ This is a <code>javax.servlet.ServletContextListener</code> that loads a <code>j
 </p>
 
 <p>
-See http://support.liferay.com/browse/LEP-2299.
+See https://issues.liferay.com/browse/LEP-2299.
 </p>]]></comment>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<see><![CDATA[com.liferay.testmisc.servlet.TestPortletSessionListener]]></see>
 		<method>
 			<name>TestPortletSessionListenerLoader</name>
 		</method>
+	</javadoc>
+	<javadoc>
+		<name>PortletKeys</name>
+		<type>com.liferay.testmisc.util.PortletKeys</type>
+		<author><![CDATA[Sergio González]]></author>
+		<field>
+			<name>TEST_MISC</name>
+		</field>
 	</javadoc>
 </javadocs>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -14,24 +14,25 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.asset.kernel.model.AssetRenderer;
+import com.liferay.document.library.kernel.model.DLFileEntry;
+import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.asset.model.AssetRenderer;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.util.DLUtil;
-import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivitySet;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.so.activities.util.SocialActivityKeyConstants;
+import com.liferay.social.kernel.model.SocialActivity;
+import com.liferay.social.kernel.model.SocialActivitySet;
+import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
+import com.liferay.social.kernel.service.SocialActivitySetLocalServiceUtil;
 
 /**
  * @author Evan Thibodeau
@@ -51,20 +52,24 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_ADD_FILE_ENTRY) {
+			if (activity.getType() ==
+					SocialActivityKeyConstants.DL_ADD_FILE_ENTRY) {
+
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getUserActivitySet(
 						activity.getGroupId(), activity.getUserId(),
 						activity.getClassNameId(), activity.getType());
 			}
-			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
+			else if (activity.getType() ==
+						SocialActivityKeyConstants.DL_UPDATE_FILE_ENTRY) {
+
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
 						activity.getClassPK(), activity.getType());
 			}
 
-			if ((activitySet != null) && !isExpired(activitySet)) {
+			if ((activitySet != null) && !isExpired(activitySet, false)) {
 				return activitySet.getActivitySetId();
 			}
 		}
@@ -88,7 +93,9 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
+		if (activitySet.getType() ==
+				SocialActivityKeyConstants.DL_UPDATE_FILE_ENTRY) {
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
@@ -114,6 +121,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			fileEntry, fileVersion, null, serviceContext.getThemeDisplay());
 
 		sb.append(thumbnailSrc);
+
 		sb.append("\"></span>");
 		sb.append("<div class=\"document-container\"><div class=\"title\">");
 		sb.append(getPageTitle(className, classPK, serviceContext));
@@ -126,7 +134,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 		sb.append(
 			StringUtil.shorten(
-				assetRenderer.getSummary(serviceContext.getLocale()), 200));
+				HtmlUtil.escape(assetRenderer.getSummary(), 200)));
 
 		sb.append("</div></div></div>");
 
@@ -153,9 +161,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 		Folder folder = fileEntry.getFolder();
 
-		String folderName = HtmlUtil.escape(folder.getName());
-
-		return wrapLink(sb.toString(), folderName);
+		return wrapLink(sb.toString(), folder.getName());
 	}
 
 	@Override
@@ -179,10 +185,10 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("&title=");
 		sb.append(HttpUtil.encodeURL(fileEntry.getTitle()));
 
-		String downloadLink = wrapLink(
+		String downloadLink = wrapLinkWithIcon(
 			sb.toString(), serviceContext.translate("download"));
 
-		return "<span>" + downloadLink + "</span>";
+		return "<span class=\"download-link\">" + downloadLink + "</span>";
 	}
 
 	@Override
@@ -207,18 +213,21 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		int activityCount = activitySet.getActivityCount();
+		if (activitySet.getType() ==
+				SocialActivityKeyConstants.DL_UPDATE_FILE_ENTRY) {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
 			String folderLink = getFolderLink(
 				activitySet.getClassPK(), serviceContext);
 
 			if (Validator.isNotNull(folderLink)) {
-				return new Object[] {activityCount, folderLink};
+				return new Object[] {
+					activitySet.getActivityCount(), folderLink
+				};
 			}
 		}
 
-		return new Object[] {activityCount};
+		return super.getTitleArguments(
+			groupName, activitySet, link, title, serviceContext);
 	}
 
 	@Override
@@ -227,10 +236,14 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 		String titlePattern = StringPool.BLANK;
 
-		if (activity.getType() == _ACTIVITY_KEY_ADD_FILE_ENTRY) {
+		if (activity.getType() ==
+				SocialActivityKeyConstants.DL_ADD_FILE_ENTRY) {
+
 			titlePattern = "uploaded-a-new-document";
 		}
-		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
+		else if (activity.getType() ==
+					SocialActivityKeyConstants.DL_UPDATE_FILE_ENTRY) {
+
 			titlePattern = "updated-a-document";
 		}
 		else {
@@ -254,10 +267,14 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 		String titlePattern = StringPool.BLANK;
 
-		if (activitySet.getType() == _ACTIVITY_KEY_ADD_FILE_ENTRY) {
+		if (activitySet.getType() ==
+				SocialActivityKeyConstants.DL_ADD_FILE_ENTRY) {
+
 			titlePattern = "uploaded-x-new-documents";
 		}
-		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_FILE_ENTRY) {
+		else if (activitySet.getType() ==
+					SocialActivityKeyConstants.DL_UPDATE_FILE_ENTRY) {
+
 			titlePattern = "made-x-updates-to-a-document";
 
 			FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
@@ -274,17 +291,18 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		return titlePattern;
 	}
 
-	/**
-	 * {@link
-	 * com.liferay.portlet.documentlibrary.social.DLActivityKeys#ADD_FILE_ENTRY}
-	 */
-	private static final int _ACTIVITY_KEY_ADD_FILE_ENTRY = 1;
+	protected String wrapLinkWithIcon(String link, String text) {
+		StringBundler sb = new StringBundler(6);
 
-	/**
-	 * {@link
-	 * com.liferay.portlet.documentlibrary.social.DLActivityKeys#UPDATE_FILE_ENTRY}
-	 */
-	private static final int _ACTIVITY_KEY_UPDATE_FILE_ENTRY = 2;
+		sb.append("<a href=\"");
+		sb.append(link);
+		sb.append("\">");
+		sb.append("<i class=\"icon-download\"></i>");
+		sb.append(text);
+		sb.append("</a>");
+
+		return sb.toString();
+	}
 
 	private static final String[] _CLASS_NAMES = {DLFileEntry.class.getName()};
 

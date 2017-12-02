@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -17,13 +17,17 @@
 
 package com.liferay.tasks.social;
 
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
-import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.social.kernel.model.BaseSocialActivityInterpreter;
+import com.liferay.social.kernel.model.SocialActivity;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
+import com.liferay.tasks.service.permission.TasksEntryPermission;
 
 /**
  * @author Ryan Park
@@ -52,6 +56,11 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 		SocialActivity activity, ServiceContext serviceContext) {
 
 		return StringPool.BLANK;
+	}
+
+	@Override
+	protected ResourceBundleLoader getResourceBundleLoader() {
+		return _resourceBundleLoader;
 	}
 
 	@Override
@@ -126,12 +135,25 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 
 	@Override
 	protected boolean hasPermissions(
-		PermissionChecker permissionChecker, SocialActivity activity,
-		String actionId, ServiceContext serviceContext) {
+			PermissionChecker permissionChecker, SocialActivity activity,
+			String actionId, ServiceContext serviceContext)
+		throws Exception {
 
-		return true;
+		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(
+			activity.getClassPK());
+
+		if (tasksEntry == null) {
+			return false;
+		}
+
+		return TasksEntryPermission.contains(
+			permissionChecker, tasksEntry, ActionKeys.VIEW);
 	}
 
 	private static final String[] _CLASS_NAMES = {TasksEntry.class.getName()};
+
+	private final ResourceBundleLoader _resourceBundleLoader =
+		new ClassResourceBundleLoader(
+			"content.Language", TasksActivityInterpreter.class);
 
 }

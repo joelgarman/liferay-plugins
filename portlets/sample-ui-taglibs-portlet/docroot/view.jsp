@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 This is the <strong>Sample UI Taglibs Portlet</strong>. This was made to showcase some of Liferay's UI taglibs.<br /><br />
-
-<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/calendar.jsp" /></portlet:renderURL>">liferay-ui:calendar</a><br /><br />
 
 <a href="<portlet:renderURL><portlet:param name="mvcPath" value="/tabs.jsp" /></portlet:renderURL>">liferay-ui:tabs</a><br /><br />
 

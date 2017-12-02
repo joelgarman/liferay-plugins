@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -74,6 +74,16 @@ public class DeployListenerDeployManagerImpl
 		return _deployManager.getInstalledPluginPackages();
 	}
 
+	@Override
+	public List<String[]> getLevelsRequiredDeploymentContexts() {
+		return _deployManager.getLevelsRequiredDeploymentContexts();
+	}
+
+	@Override
+	public List<String[]> getLevelsRequiredDeploymentWARFileNames() {
+		return _deployManager.getLevelsRequiredDeploymentWARFileNames();
+	}
+
 	public DeployManager getWrappedDeployManager() {
 		return _deployManager;
 	}
@@ -81,6 +91,11 @@ public class DeployListenerDeployManagerImpl
 	@Override
 	public boolean isDeployed(String context) {
 		return _deployManager.isDeployed(context);
+	}
+
+	@Override
+	public boolean isRequiredDeploymentContext(String context) {
+		return _deployManager.isRequiredDeploymentContext(context);
 	}
 
 	@Override
